@@ -1,0 +1,137 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// "お申し込みから支援開始まで、5ステップ" セクション
+.p-flow {
+  background: v.$color-primary;
+  color: v.$color-white;
+  padding: 90px 0 100px;
+
+  @include m.sp {
+    padding: 50px 0 60px;
+  }
+
+  &__inner {
+    @include m.container(v.$container-pc);
+  }
+
+  &__head {
+    margin-bottom: 50px;
+
+    @include m.sp {
+      margin-bottom: 26px;
+    }
+  }
+
+  &__tag {
+    color: rgba(#fff, 0.7);
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: v.$fw-bold;
+    color: v.$color-white;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+
+    .num {
+      color: v.$color-yellow;
+      font-size: 1.1em;
+      margin-right: 0.05em;
+    }
+
+    @include m.sp {
+      font-size: 22px;
+    }
+  }
+
+  &__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__step {
+    background: v.$color-white;
+    border-radius: 10px;
+    color: v.$color-text;
+    padding: 24px 30px 30px;
+
+    @include m.sp {
+      padding: 20px 18px;
+    }
+  }
+
+  &__step-head {
+    display: flex;
+    align-items: stretch;
+    background: v.$color-primary-light;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 18px;
+
+    @include m.sp {
+      margin-bottom: 14px;
+    }
+  }
+
+  &__step-num {
+    background: v.$color-green;
+    color: v.$color-white;
+    flex: 0 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    text-align: center;
+    line-height: 1.2;
+
+    .label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      font-weight: v.$fw-bold;
+    }
+    .no {
+      font-size: 22px;
+      font-weight: v.$fw-bold;
+    }
+
+    @include m.sp {
+      flex: 0 0 60px;
+
+      .label { font-size: 10px; }
+      .no { font-size: 18px; }
+    }
+  }
+
+  &__step-title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    font-weight: v.$fw-bold;
+    color: v.$color-primary;
+    padding: 0 20px;
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+
+    @include m.sp {
+      font-size: 16px;
+      padding: 0 14px;
+    }
+  }
+
+  &__step-body {
+    font-size: 15px;
+    line-height: 1.85;
+
+    p + p { margin-top: 10px; }
+
+    @include m.sp {
+      font-size: 14px;
+    }
+  }
+}

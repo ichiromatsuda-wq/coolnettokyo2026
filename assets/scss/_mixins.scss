@@ -1,0 +1,42 @@
+@use "variables" as v;
+
+// -- Breakpoints --
+@mixin sp {
+  @media (max-width: #{v.$bp-sp}) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media (min-width: #{v.$bp-sp + 1}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{v.$bp-sp + 1}) and (max-width: #{v.$bp-tablet}) {
+    @content;
+  }
+}
+
+// -- Container --
+@mixin container($max: v.$container-pc) {
+  width: 100%;
+  max-width: #{$max + 40px};
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include sp {
+    padding: 0 v.$container-sp-pad;
+  }
+}
+
+// -- Section title heading lockup ("Tag" + main title) --
+@mixin section-tag {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: v.$fw-medium;
+  color: v.$color-green;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}

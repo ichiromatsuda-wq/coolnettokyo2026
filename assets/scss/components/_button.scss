@@ -1,0 +1,82 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// 共通ボタン（角丸、アイコン右付き）
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 19px;
+  min-width: 180px;
+  max-width: 100%;
+  min-height: 50px;
+  padding: 14px 20px 14px 24px;
+  font-size: 18px;
+  font-weight: v.$fw-bold;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  border-radius: v.$radius-md;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  text-align: center;
+
+  @include m.sp {
+    width: 100%;
+    font-size: 16px;
+    padding: 16px 18px;
+  }
+
+  &:hover {
+    opacity: 0.88;
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
+// オレンジボタン（最重要 CTA）
+.c-btn--orange {
+  background: v.$color-orange;
+  color: v.$color-white;
+}
+
+// 白背景 / オレンジ文字
+.c-btn--white {
+  background: v.$color-white;
+  color: v.$color-orange;
+}
+
+// 緑ボタン
+.c-btn--green {
+  background: v.$color-green;
+  color: v.$color-white;
+}
+
+// 大型 CTA (CTA セクション用)
+.c-btn--lg {
+  width: 100%;
+  max-width: 580px;
+  min-height: 80px;
+  font-size: 22px;
+  border-radius: v.$radius-md;
+
+  @include m.sp {
+    min-height: 64px;
+    font-size: 18px;
+  }
+}
+
+// セクション中央寄せ
+.c-btn--center {
+  display: inline-flex;
+}

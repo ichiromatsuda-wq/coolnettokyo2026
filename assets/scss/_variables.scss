@@ -1,0 +1,51 @@
+// =================================================================
+// Design Tokens (Figma 変数より抽出)
+// =================================================================
+
+// -- Colors --
+$color-primary:        #006159; // B-03 ブランドメインカラー (深い緑)
+$color-primary-grad:   linear-gradient(180deg, #008075 0%, #006159 100%);
+$color-primary-light:  #D8E3E3; // 03-light (薄いグレー緑)
+$color-yellow:         #FFBB00; // B-01 (ハイライト)
+$color-orange:         #F28A13; // 01 (CTA)
+$color-green:          #009B4A; // 02 (アクセント)
+$color-green-light:    #00BC5A; // 02-light
+$color-text:           #1A1A1A;
+$color-text-light:     #666666;
+$color-bg-light:       #F4F2EF; // grey-light (背景)
+$color-white:          #FFFFFF;
+$color-footer:         #041818; // フッター背景
+$color-navy:           #002C5C; // 先着カード (30社 / 5社) 紺
+$color-step-bg:        #ECEFEF; // ステップタイトル背景 (estimated)
+$color-table-head:     #006159;
+$color-table-th:       #D8E3E3;
+$color-coolnet-bg:     #D8E3E3;
+$color-coolnet-card:   #FFFFFF;
+$color-border-light:   rgba(#000, 0.08);
+
+// -- Typography --
+$font-jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+
+$fw-regular:  400;
+$fw-medium:   500;
+$fw-semibold: 600;
+$fw-bold:     700;
+$fw-black:    900;
+
+// -- Layout --
+$container-pc:      1024px;
+$container-pc-wide: 1232px;
+$container-sp-pad:  20px;
+
+// -- Breakpoints --
+$bp-sp: 1049px;
+$bp-tablet: 1049px;
+
+// -- Radius --
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 10px;
+$radius-xl: 16px;
+
+// -- Shadows --
+$shadow-card: 0 2px 12px rgba(#000, 0.06);

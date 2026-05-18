@@ -1,0 +1,32 @@
+// =================================================================
+// クール・ネット東京 LP メインエントリ
+// =================================================================
+
+// 1. Foundations
+@use "variables";
+@use "mixins";
+@use "base";
+
+// 2. Components (共通パーツ)
+@use "components/button";
+@use "components/section-title";
+@use "components/card";
+
+// 3. Sections (ページ固有)
+@use "sections/header";
+@use "sections/hero";
+@use "sections/trouble";
+@use "sections/support";
+@use "sections/table";
+@use "sections/jinzai";
+@use "sections/shoene";
+@use "sections/flow";
+@use "sections/coolnet";
+@use "sections/cta";
+@use "sections/footer";
+
+// 4. Utilities (汎用)
+.u-hide-pc { @include mixins.pc { display: none !important; } }
+.u-hide-sp { @include mixins.sp { display: none !important; } }
+.u-mt-40 { margin-top: 40px; }
+.u-center { text-align: center; }

@@ -1,0 +1,76 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+.l-footer {
+  background: v.$color-footer;
+  color: v.$color-white;
+  padding: 60px 20px;
+
+  @include m.sp {
+    padding: 36px 20px;
+  }
+
+  &__inner {
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__org {
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+
+    @include m.sp {
+      font-size: 12px;
+    }
+  }
+
+  &__operator {
+    font-size: 12px;
+    letter-spacing: 0.05em;
+
+    a {
+      text-decoration: underline;
+      color: v.$color-white;
+    }
+
+    @include m.sp {
+      font-size: 11px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font-size: 14px;
+
+    @include m.sp {
+      font-size: 13px;
+      gap: 18px;
+    }
+
+    a {
+      color: v.$color-white;
+      text-decoration: underline;
+    }
+
+    .sep {
+      display: inline-block;
+      width: 1px;
+      height: 18px;
+      background: rgba(#fff, 0.4);
+    }
+  }
+}

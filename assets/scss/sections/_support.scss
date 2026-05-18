@@ -1,0 +1,110 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// "この事業で受けられる 3つのサポート" セクション
+.p-support {
+  background: v.$color-primary;
+  padding: 100px 0 110px;
+  color: v.$color-white;
+
+  @include m.sp {
+    padding: 60px 0 70px;
+  }
+
+  &__inner {
+    @include m.container(v.$container-pc);
+  }
+
+  &__tag {
+    color: rgba(#fff, 0.7);
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: v.$fw-bold;
+    line-height: 1.5;
+    color: v.$color-white;
+    letter-spacing: 0.04em;
+
+    @include m.sp {
+      font-size: 24px;
+    }
+
+    .c-section-title__num {
+      color: v.$color-yellow;
+    }
+  }
+
+  &__head {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+
+    @include m.sp {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__head-badge {
+    margin-bottom: 6px;
+
+    @include m.sp {
+      margin-bottom: 0;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+
+    @include m.sp {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  &__card {
+    background: v.$color-white;
+    border-radius: 10px;
+    padding: 32px 30px;
+    color: v.$color-text;
+
+    @include m.sp {
+      padding: 24px 22px;
+    }
+  }
+
+  &__card-num {
+    font-size: 14px;
+    color: v.$color-text-light;
+    font-weight: v.$fw-bold;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  &__card-title {
+    font-size: 19px;
+    font-weight: v.$fw-bold;
+    color: v.$color-primary;
+    margin-bottom: 18px;
+
+    @include m.sp {
+      font-size: 17px;
+    }
+  }
+
+  &__card-text {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: v.$color-text;
+
+    @include m.sp {
+      font-size: 14px;
+    }
+  }
+}

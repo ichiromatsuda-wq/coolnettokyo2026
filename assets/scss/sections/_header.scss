@@ -1,0 +1,254 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// =================================================================
+// ヘッダー (Figma node 13:748 - PC / 13:1467 - SP)
+// ヒーローの上にオーバーレイ表示。左コンテナのみ #F4F2EF 背景、
+// 右側 (ナビ + CTA / ハンバーガー) は透明。
+// =================================================================
+.l-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  pointer-events: none; // 透明部はクリックスルー
+  background: transparent;
+}
+
+.l-header__inner {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 auto;
+
+  @include m.sp {
+    align-items: flex-start;
+  }
+}
+
+// -- 左ブランドコンテナ (背景 #F4F2EF, 右下角丸) --
+.l-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: v.$color-bg-light; // #F4F2EF
+  border-bottom-right-radius: 6px;
+  padding: 15px 20px;
+  height: 71px;
+  pointer-events: auto;
+
+  @include m.sp {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    gap: 5px;
+    padding: 5px 15px 15px;
+  }
+}
+
+.l-header__logo {
+  width: 200px;
+  height: auto;
+  display: block;
+
+  @include m.sp {
+    padding-bottom: 5px;
+  }
+}
+
+// 垂直 / 水平 区切り線
+.l-header__brand-divider {
+  flex-shrink: 0;
+  width: 1px;
+  height: 37px;
+  background: rgba(#000, 0.18);
+
+  @include m.sp {
+    width: 100%;
+    height: 1px;
+  }
+}
+
+.l-header__brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.l-header__brand-sub {
+  font-size: 10px;
+  font-weight: v.$fw-medium;
+  color: #595959;
+  margin: 0;
+  line-height: 1;
+}
+
+.l-header__brand-title {
+  font-size: 12px;
+  font-weight: v.$fw-bold;
+  color: #333;
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1;
+}
+
+// -- 右側コンテナ (ナビ + CTA, 透明) --
+.l-header__right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 11px 24px;
+  pointer-events: auto;
+
+  @media (max-width: 1049px) {
+    display: none;
+  }
+}
+
+.l-header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.l-header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.l-header__nav-link {
+  font-size: 14px;
+  font-weight: v.$fw-semibold;
+  color: v.$color-white;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+  pointer-events: auto;
+
+  &:hover { opacity: 0.7; }
+}
+
+// ヘッダー内 CTA ボタン (Figma 14px)
+.l-header__cta {
+  min-width: 180px;
+  min-height: 50px;
+  padding: 15px 5px 15px 15px;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  justify-content: flex-start;
+  text-align: left;
+
+  > p,
+  > span:first-child {
+    flex: 1 1 auto;
+    text-align: left;
+  }
+}
+
+// -- ハンバーガーボタン (SP のみ) --
+.l-header__hamburger {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: none;
+  width: 50px;
+  height: 50px;
+  background: v.$color-primary; // 濃緑bg + 白線 (Figma 視覚)
+  border: 0;
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 1049px) {
+    display: inline-flex;
+  }
+
+  &-icon {
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 16px;
+
+    span,
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 22px;
+      height: 2px;
+      background: v.$color-white;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+    span { top: 7px; }
+    &::before { top: 0; }
+    &::after { top: 14px; }
+  }
+
+  &.is-open {
+    .l-header__hamburger-icon {
+      span { opacity: 0; }
+      &::before { transform: translateY(7px) rotate(45deg); }
+      &::after { transform: translateY(-7px) rotate(-45deg); }
+    }
+  }
+}
+
+// =================================================================
+// SP ドロワー
+// =================================================================
+.l-drawer {
+  position: fixed;
+  inset: 0;
+  background: v.$color-primary;
+  z-index: 99;
+  padding: 96px 24px 32px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  pointer-events: auto;
+
+  &.is-open {
+    transform: translateX(0);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0 0 30px;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__link {
+    display: block;
+    color: v.$color-white;
+    padding: 18px 12px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(#fff, 0.18);
+  }
+
+  &__cta .c-btn {
+    width: 100%;
+    justify-content: center;
+
+    > p,
+    > span:first-child {
+      flex: 0 1 auto;
+      text-align: center;
+    }
+  }
+}

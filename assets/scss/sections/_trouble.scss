@@ -1,0 +1,174 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// "こんなお悩みはありませんか？" セクション
+.p-trouble {
+  background: v.$color-bg-light;
+  padding: 100px 0 80px;
+
+  @include m.sp {
+    padding: 60px 0 50px;
+  }
+
+  &__inner {
+    @include m.container(v.$container-pc);
+  }
+
+  &__top {
+    display: grid;
+    grid-template-columns: minmax(360px, 1fr) minmax(360px, 1.2fr);
+    gap: 40px 60px;
+    align-items: start;
+
+    @media (min-width: 1050px) {
+      grid-template-columns: minmax(420px, 1fr) minmax(460px, 1.2fr);
+    }
+
+    @include m.sp {
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+  }
+
+  &__title-wrap {
+    @include m.pc {
+      padding-top: 20px;
+    }
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: v.$fw-bold;
+    color: v.$color-primary;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+
+    @media (min-width: 1050px) {
+      white-space: nowrap;
+    }
+
+    @include m.sp {
+      font-size: 22px;
+    }
+  }
+
+  &__illust {
+    display: none;
+
+    @include m.pc {
+      display: block;
+      margin-top: 80px;
+      width: 320px;
+      height: auto;
+    }
+  }
+
+  &__illust-sp {
+    display: block;
+    margin: 30px auto;
+    width: 200px;
+    height: auto;
+
+    @include m.pc {
+      display: none;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    gap: 20px;
+
+    @include m.sp {
+      gap: 16px;
+    }
+  }
+
+  &__card {
+    background: v.$color-white;
+    border-radius: 10px;
+    padding: 22px 28px;
+    box-shadow: 0 2px 8px rgba(#000, 0.04);
+
+    @include m.sp {
+      padding: 18px 20px;
+    }
+  }
+
+  &__card-title {
+    font-size: 19px;
+    font-weight: v.$fw-bold;
+    color: v.$color-primary;
+    line-height: 1.4;
+    margin-bottom: 8px;
+
+    @include m.sp {
+      font-size: 17px;
+    }
+  }
+
+  &__card-text {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: v.$color-text;
+
+    @include m.sp {
+      font-size: 14px;
+    }
+  }
+
+  // 下部 - "1つでも当てはまる方へ" CTA ボックス
+  &__cta {
+    margin-top: 70px;
+    background: linear-gradient(180deg, #00766c 0%, #003B36 100%);
+    color: v.$color-white;
+    text-align: center;
+    border-radius: 4px;
+    padding: 60px 30px 70px;
+
+    @include m.sp {
+      margin-top: 40px;
+      padding: 40px 20px 50px;
+    }
+  }
+
+  &__cta-badge {
+    display: inline-block;
+    background: v.$color-yellow;
+    color: v.$color-text;
+    font-size: 16px;
+    font-weight: v.$fw-bold;
+    padding: 6px 24px;
+    border-radius: 999px;
+    margin-bottom: 30px;
+
+    @include m.sp {
+      font-size: 13px;
+      padding: 5px 18px;
+      margin-bottom: 22px;
+    }
+  }
+
+  &__cta-title {
+    font-size: 28px;
+    font-weight: v.$fw-bold;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+
+    @include m.sp {
+      font-size: 18px;
+      line-height: 1.65;
+    }
+  }
+
+  &__cta-lead {
+    margin-top: 26px;
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(#fff, 0.92);
+
+    @include m.sp {
+      font-size: 13.5px;
+      margin-top: 20px;
+    }
+  }
+}

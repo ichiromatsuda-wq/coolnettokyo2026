@@ -1,0 +1,81 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// 最終 CTA "まず一歩、ここから始めませんか。"
+.p-cta {
+  background: v.$color-primary;
+  color: v.$color-white;
+  padding: 80px 0 90px;
+  text-align: center;
+
+  @include m.sp {
+    padding: 50px 0 60px;
+  }
+
+  &__inner {
+    @include m.container(v.$container-pc);
+  }
+
+  &__badge {
+    display: block;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto 36px;
+    background: v.$color-yellow;
+    color: v.$color-text;
+    font-size: 18px;
+    font-weight: v.$fw-bold;
+    padding: 16px 20px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+
+    @include m.sp {
+      font-size: 14px;
+      padding: 14px 16px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: v.$fw-bold;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+    margin: 0 auto 24px;
+
+    @include m.sp {
+      font-size: 19px;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+  }
+
+  &__lead {
+    font-size: 14px;
+    line-height: 1.85;
+    color: rgba(#fff, 0.92);
+    margin-bottom: 40px;
+
+    @include m.sp {
+      font-size: 13px;
+      margin-bottom: 32px;
+    }
+  }
+
+  &__btn-wrap {
+    display: flex;
+    justify-content: center;
+
+    .c-btn {
+      width: 100%;
+      max-width: 580px;
+      min-height: 76px;
+      font-size: 22px;
+
+      @include m.sp {
+        min-height: 60px;
+        font-size: 17px;
+      }
+    }
+  }
+}

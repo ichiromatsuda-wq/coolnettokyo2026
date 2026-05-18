@@ -1,0 +1,275 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// "省エネ取組提案" Support 03
+.p-shoene {
+  background: v.$color-bg-light;
+  padding: 100px 0;
+
+  @include m.sp {
+    padding: 60px 0;
+  }
+
+  &__inner {
+    @include m.container(v.$container-pc);
+  }
+
+  &__head {
+    margin-bottom: 40px;
+
+    @include m.sp {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: v.$fw-black;
+    color: v.$color-primary;
+    letter-spacing: 0.1em;
+    line-height: 1.7;
+    margin: 0 0 20px;
+
+    @include m.sp {
+      font-size: 22px;
+      letter-spacing: 0.05em;
+      line-height: 1.55;
+    }
+  }
+
+  &__lead {
+    font-size: 16px;
+    line-height: 1.7;
+    color: v.$color-text;
+    letter-spacing: 0.05em;
+
+    @include m.sp {
+      font-size: 14px;
+    }
+  }
+
+  // 縦並びの3カード
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  // 単一カード本体
+  &__card {
+    display: flex;
+    align-items: stretch;
+    background: v.$color-white;
+    border-radius: 6px;
+    overflow: hidden;
+
+    @include m.sp {
+      flex-direction: column;
+    }
+  }
+
+  // -- 左カラム (対象/全社) --
+  &__card-left {
+    flex: 0 0 170px;
+    background: v.$color-primary; // #006159
+    color: v.$color-white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    gap: 10px;
+    text-align: center;
+
+    @include m.sp {
+      flex: 0 0 auto;
+      width: 100%;
+      padding: 14px 16px;
+      gap: 6px;
+    }
+  }
+
+  // 「対象」「先着」バッジ - 白アウトライン、フル幅
+  &__card-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid rgba(#fff, 0.5);
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: v.$fw-regular;
+    color: v.$color-white;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+
+    @include m.sp {
+      max-width: 160px;
+      font-size: 14px;
+      padding: 3px 5px;
+    }
+  }
+
+  // 大型数字「全社」「30社」「5社」
+  &__card-num {
+    font-size: 24px;
+    font-weight: v.$fw-bold;
+    color: v.$color-white;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+    width: 100%;
+    text-align: center;
+
+    @include m.sp {
+      font-size: 22px;
+    }
+  }
+
+  // 紺色バリアント (先着 30社 / 5社)
+  &__card-left--navy {
+    background: v.$color-navy; // #002C5C
+  }
+
+  // 紺カードでは右側のタイトルも紺色になる
+  &__card:has(&__card-left--navy) &__card-title {
+    color: v.$color-navy;
+  }
+
+  // -- 右カラム (タイトル/本文/省エネ6則) --
+  &__card-right {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include m.sp {
+      padding: 22px 20px;
+      gap: 16px;
+    }
+  }
+
+  &__card-title {
+    font-size: 20px;
+    font-weight: v.$fw-bold;
+    color: v.$color-primary;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+    margin: 0;
+
+    @include m.sp {
+      font-size: 17px;
+      letter-spacing: 0.03em;
+    }
+  }
+
+  &__card-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: v.$color-text;
+    letter-spacing: 0.05em;
+
+    p + p { margin-top: 10px; }
+
+    @include m.sp {
+      font-size: 14px;
+    }
+  }
+
+  // -- 「省エネ6則」サブブロック (#d8e3e3 トップボーダー) --
+  &__sub {
+    border-top: 1px solid v.$color-primary-light; // #d8e3e3
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__sub-title {
+    font-size: 18px;
+    font-weight: v.$fw-bold;
+    color: v.$color-text; // 黒、緑ではない
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+    margin: 0;
+
+    @include m.sp {
+      font-size: 15px;
+    }
+  }
+
+  &__sub-lead {
+    font-size: 16px;
+    line-height: 1.7;
+    color: v.$color-text;
+    letter-spacing: 0.05em;
+    margin: 0;
+
+    @include m.sp {
+      font-size: 13.5px;
+    }
+  }
+
+  // -- 6則チップ (#f4f2ef bg, 左寄せ) --
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  &__chip {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 88px;
+    background: v.$color-bg-light; // #F4F2EF (grey-light)
+    border-radius: 3px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    text-align: left;
+
+    @include m.sp {
+      flex: 1 1 calc(33.333% - 4px);
+      height: auto;
+      min-height: 76px;
+    }
+
+    strong {
+      display: block;
+      font-size: 16px;
+      font-weight: v.$fw-bold;
+      color: v.$color-primary;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin: 0;
+
+      @include m.sp {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__chip-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: v.$color-text;
+    margin: 0;
+
+    @include m.sp {
+      font-size: 12px;
+    }
+  }
+
+  // 注釈テキスト
+  &__note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: v.$color-text-light;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+  }
+}

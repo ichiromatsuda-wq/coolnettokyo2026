@@ -1,0 +1,85 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// 共通カード (白背景、影、丸み)
+.c-card {
+  background: v.$color-white;
+  border-radius: v.$radius-lg;
+  padding: 30px;
+  box-shadow: v.$shadow-card;
+
+  @include m.sp {
+    padding: 22px 20px;
+    border-radius: 8px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: v.$fw-bold;
+    color: v.$color-primary;
+    line-height: 1.5;
+    margin-bottom: 12px;
+
+    @include m.sp {
+      font-size: 17px;
+    }
+  }
+
+  &__text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: v.$color-text;
+
+    @include m.sp {
+      font-size: 14px;
+    }
+  }
+
+  &__num {
+    display: inline-block;
+    font-size: 16px;
+    color: v.$color-text-light;
+    font-weight: v.$fw-bold;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  // 番号付きカード (3 サポート)
+  &--numbered {
+    .c-card__title {
+      margin-bottom: 18px;
+    }
+  }
+}
+
+// 共通カードのリスト箇条書き
+.c-bullet-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: v.$color-text;
+
+    + li { margin-top: 10px; }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: v.$color-green;
+    }
+
+    @include m.sp {
+      font-size: 14px;
+    }
+  }
+}
