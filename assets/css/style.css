@@ -396,6 +396,30 @@ table {
   visibility: hidden;
 }
 
+.c-skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 300;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background: #006159;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  transform: translateY(calc(-100% - 16px));
+}
+.c-skip-link:focus {
+  transform: none;
+  outline: 2px solid #F28A13;
+  outline-offset: 2px;
+}
+
+#main:focus {
+  outline: none;
+}
+
 .l-header {
   position: fixed;
   top: 0;

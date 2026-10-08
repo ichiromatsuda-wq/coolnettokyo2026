@@ -1,0 +1,30 @@
+@use "../variables" as v;
+
+// =================================================================
+// 本文へスキップ (通常は非表示、キーボードフォーカス時のみ左上に表示)
+// =================================================================
+.c-skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 300;
+  padding: 10px 16px;
+  border-radius: v.$radius-md;
+  background: v.$color-primary;
+  color: v.$color-white;
+  font-size: 14px;
+  font-weight: v.$fw-bold;
+  line-height: 1.4;
+  transform: translateY(calc(-100% - 16px));
+
+  &:focus {
+    transform: none;
+    outline: 2px solid v.$color-orange;
+    outline-offset: 2px;
+  }
+}
+
+// スキップ先 (tabindex="-1") はフォーカス枠を出さない
+#main:focus {
+  outline: none;
+}

@@ -186,6 +186,8 @@
       if (!target) return;
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // 本文へスキップ等: 移動先がフォーカス可能 (tabindex) ならフォーカスも移す
+      if (target.hasAttribute('tabindex')) target.focus({ preventScroll: true });
     });
   });
 })();
