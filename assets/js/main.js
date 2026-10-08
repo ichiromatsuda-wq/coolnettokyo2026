@@ -107,6 +107,49 @@
     });
   }
 
+  // 高さアニメーション付き開閉 (導入企業の声「続きを読む」/ FAQ で共用)
+  const animateHeight = (el, to, onEnd) => {
+    const from = el.getBoundingClientRect().height;
+    el.style.height = `${from}px`;
+    void el.offsetHeight; // reflow して開始値を確定
+    el.style.height = `${to}px`;
+    // transition が無効 (reduced motion 等) の場合は即完了
+    if (parseFloat(getComputedStyle(el).transitionDuration) === 0) {
+      if (onEnd) onEnd();
+      return;
+    }
+    const done = (e) => {
+      if (e.target !== el || e.propertyName !== 'height') return;
+      el.removeEventListener('transitionend', done);
+      if (onEnd) onEnd();
+    };
+    el.addEventListener('transitionend', done);
+  };
+
+  // 導入企業の声「続きを読む」
+  document.querySelectorAll('.js-voice-toggle').forEach((btn) => {
+    const wrap = document.getElementById(btn.getAttribute('aria-controls'));
+    const label = btn.querySelector('.p-voice__toggle-label');
+    if (!wrap) return;
+    const collapsedHeight = wrap.getBoundingClientRect().height;
+
+    btn.addEventListener('click', () => {
+      const willOpen = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      if (label) label.textContent = willOpen ? '閉じる' : '続きを読む';
+      wrap.classList.toggle('is-open', willOpen);
+      if (willOpen) {
+        animateHeight(wrap, wrap.scrollHeight, () => {
+          wrap.style.height = 'auto';
+        });
+      } else {
+        animateHeight(wrap, collapsedHeight, () => {
+          wrap.style.height = '';
+        });
+      }
+    });
+  });
+
   // スムーススクロール (固定ヘッダー分のオフセット補正)
   const headerHeight = () => (header ? header.offsetHeight : 0);
 
