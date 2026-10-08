@@ -248,11 +248,12 @@ main section[id] {
     box-shadow: 0 -4px 15px rgba(#000, 0.1);
     transform: translateY(8px);
 
-    // ドロワー表示中は隠す
+    // ドロワー表示中もドロワーより前面に表示 (ヘッダー z-index 100 > ドロワー 99)
     .l-header:has(.l-header__hamburger.is-open) & {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
     }
   }
 }
@@ -359,9 +360,10 @@ main section[id] {
   inset: 0;
   background: v.$color-primary;
   z-index: 99;
-  padding: 96px 24px 32px;
+  // 上: ヘッダー高 (通常 102px / コンパクト 52px) + 余白、下: 固定 CV バー (56px) + 余白
+  padding: (v.$header-height-sp + 10px) 24px calc(56px + 32px + env(safe-area-inset-bottom));
+  transition: transform 0.3s ease, padding-top 0.3s ease;
   transform: translateX(100%);
-  transition: transform 0.3s ease;
   overflow-y: auto;
   pointer-events: auto;
 
@@ -369,11 +371,15 @@ main section[id] {
     transform: translateX(0);
   }
 
+  .l-header.is-scrolled + & {
+    padding-top: v.$header-height-sp-compact + 10px;
+  }
+
   &__list {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin: 0 0 30px;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
@@ -384,16 +390,5 @@ main section[id] {
     padding: 18px 12px;
     font-size: 16px;
     border-bottom: 1px solid rgba(#fff, 0.18);
-  }
-
-  &__cta .c-btn {
-    width: 100%;
-    justify-content: center;
-
-    > p,
-    > span:first-child {
-      flex: 0 1 auto;
-      text-align: center;
-    }
   }
 }
