@@ -100,11 +100,10 @@
       });
     });
 
-    window.addEventListener('resize', () => {
-      tooltips.forEach((tooltip) => {
-        if (tooltip.classList.contains('is-open')) placeTooltip(tooltip);
-      });
-    });
+    // 非表示中もはみ出してページ幅を広げないよう、全件を初期配置・リサイズ時に補正
+    const placeAll = () => tooltips.forEach(placeTooltip);
+    placeAll();
+    window.addEventListener('resize', placeAll);
   }
 
   // 高さアニメーション付き開閉 (導入企業の声「続きを読む」/ FAQ で共用)
