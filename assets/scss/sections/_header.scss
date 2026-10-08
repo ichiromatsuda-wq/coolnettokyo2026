@@ -47,7 +47,7 @@
 
 // アンカー着地位置: 固定ヘッダーに被らないよう余白を確保
 main section[id] {
-  scroll-margin-top: v.$header-height-sp + 12px;
+  scroll-margin-top: v.$header-height-sp-compact + 12px; // 着地時はスクロール済み = コンパクトヘッダー
 
   @include m.pc {
     scroll-margin-top: v.$header-height-pc + 12px;
@@ -69,9 +69,11 @@ main section[id] {
   @include m.sp {
     flex-direction: column;
     align-items: flex-start;
-    height: auto;
+    justify-content: center;
+    height: v.$header-height-sp;
     gap: 5px;
     padding: 5px 15px 15px;
+    transition: background-color 0.3s ease, height 0.3s ease, padding 0.3s ease, gap 0.3s ease;
   }
 }
 
@@ -81,7 +83,9 @@ main section[id] {
   display: block;
 
   @include m.sp {
+    max-height: 44px;
     padding-bottom: 5px;
+    transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.2s ease;
   }
 }
 
@@ -95,6 +99,7 @@ main section[id] {
   @include m.sp {
     width: 100%;
     height: 1px;
+    transition: height 0.3s ease, opacity 0.2s ease;
   }
 }
 
@@ -115,6 +120,7 @@ main section[id] {
 
   @include m.sp {
     font-size: 10px; // SP は既存サイズを維持 (ver2 は PC のみ)
+    transition: font-size 0.3s ease;
   }
 }
 
@@ -125,6 +131,39 @@ main section[id] {
   letter-spacing: 0.1em;
   margin: 0;
   line-height: 1;
+}
+
+// -- SP コンパクトヘッダー (80px 超): サイト名 2 行 + ハンバーガーのみ、高さ 52px --
+// ヘッダーは fixed のためページ全長は変わらない。高さ・余白は transition で変化
+@include m.sp {
+  .l-header.is-scrolled {
+    .l-header__brand {
+      height: v.$header-height-sp-compact;
+      gap: 0;
+      padding: 0 15px;
+    }
+
+    .l-header__logo {
+      max-height: 0;
+      padding-bottom: 0;
+      opacity: 0;
+    }
+
+    .l-header__brand-divider {
+      height: 0;
+      opacity: 0;
+    }
+
+    .l-header__brand-sub {
+      font-size: 11px;
+    }
+
+    .l-header__hamburger {
+      top: 6px;
+      width: 40px;
+      height: 40px;
+    }
+  }
 }
 
 // -- 右側コンテナ (ナビ, 透明) --
@@ -275,6 +314,7 @@ main section[id] {
   pointer-events: auto;
   align-items: center;
   justify-content: center;
+  transition: top 0.3s ease, width 0.3s ease, height 0.3s ease;
 
   @media (max-width: 1049px) {
     display: inline-flex;

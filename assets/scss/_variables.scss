@@ -40,6 +40,7 @@ $container-pc-wide: 1232px;
 $container-sp-pad:  20px;
 $header-height-pc:  71px;  // 固定ヘッダーの高さ (アンカー着地位置の補正に使用)
 $header-height-sp:  102px; // SP 固定ヘッダーの高さ (ロゴ + サイト名の縦積み)
+$header-height-sp-compact: 52px; // SP スクロール後のコンパクトヘッダー (サイト名 2 行のみ)
 
 // -- Breakpoints --
 $bp-sp: 1049px;
