@@ -25,11 +25,13 @@ $color-border-light:   rgba(#000, 0.08);
 
 // -- Typography --
 $font-jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+$font-en: "Inter", $font-jp;
 
 $fw-regular:  400;
 $fw-medium:   500;
 $fw-semibold: 600;
 $fw-bold:     700;
+$fw-extrabold: 800;
 $fw-black:    900;
 
 // -- Layout --

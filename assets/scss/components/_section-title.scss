@@ -4,11 +4,13 @@
 // セクション小タグ ("Trouble", "Support" 等)
 .c-tag {
   display: inline-block;
+  font-family: v.$font-en;
   font-size: 14px;
-  font-weight: v.$fw-medium;
+  font-weight: 300;
+  line-height: 1.5;
   color: v.$color-green;
-  letter-spacing: 0.08em;
-  margin-bottom: 14px;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
   text-transform: none;
 
   @include m.sp {

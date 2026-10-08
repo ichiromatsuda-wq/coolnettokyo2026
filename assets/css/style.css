@@ -156,11 +156,13 @@ table {
 
 .c-tag {
   display: inline-block;
+  font-family: "Inter", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 300;
+  line-height: 1.5;
   color: #009B4A;
-  letter-spacing: 0.08em;
-  margin-bottom: 14px;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
   text-transform: none;
 }
 @media (max-width: 1049px) {
