@@ -5,10 +5,10 @@
 // ヘッダー (Figma node 13:748 - PC / 13:1467 - SP)
 // ヒーローの上にオーバーレイ表示。左コンテナのみ #F4F2EF 背景、
 // 右側 (ナビ / ハンバーガー) は透明。
-// PC はスクロールで固定 + 白背景 (Figma 49:1376 LP修正版-スクロール時)
+// PC / SP とも固定表示。80px スクロールで白背景 + 影 (Figma 49:1376 LP修正版-スクロール時)
 // =================================================================
 .l-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -17,21 +17,17 @@
   background: transparent;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
-  @include m.pc {
-    position: fixed;
+  &.is-scrolled {
+    background: v.$color-white;
+    box-shadow: 0 4px 15px rgba(#000, 0.1);
+    pointer-events: auto;
 
-    &.is-scrolled {
-      background: v.$color-white;
-      box-shadow: 0 4px 15px rgba(#000, 0.1);
-      pointer-events: auto;
+    .l-header__brand {
+      background: transparent;
+    }
 
-      .l-header__brand {
-        background: transparent;
-      }
-
-      .l-header__nav-link {
-        color: v.$color-text;
-      }
+    .l-header__nav-link {
+      color: v.$color-text;
     }
   }
 }
@@ -49,9 +45,9 @@
   }
 }
 
-// アンカー着地位置: PC は固定ヘッダーに被らないよう余白を確保 (SP のヘッダーは固定しない)
+// アンカー着地位置: 固定ヘッダーに被らないよう余白を確保
 main section[id] {
-  scroll-margin-top: 12px;
+  scroll-margin-top: v.$header-height-sp + 12px;
 
   @include m.pc {
     scroll-margin-top: v.$header-height-pc + 12px;
