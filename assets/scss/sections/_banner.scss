@@ -1,0 +1,99 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// =================================================================
+// 対面勉強会バナー (Figma 49:310)
+// =================================================================
+.p-banner {
+  background: v.$color-white;
+  padding: 60px 0;
+
+  @include m.sp {
+    padding: 40px 0;
+  }
+
+  &__inner {
+    @include m.container;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 30px;
+    padding: 30px;
+    border-radius: v.$radius-md;
+    background: linear-gradient(180deg, #FFC94C 0%, v.$color-orange 100%);
+
+    @include m.sp {
+      flex-direction: column;
+      gap: 20px;
+      padding: 24px 20px;
+    }
+  }
+
+  &__text {
+    align-self: center;
+    font-size: 24px;
+    font-weight: v.$fw-bold;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    color: v.$color-white;
+
+    sub {
+      line-height: 0;
+    }
+
+    @include m.sp {
+      font-size: 18px;
+    }
+  }
+
+  // "無料" 白枠 (Figma 87×42)
+  &__em {
+    display: inline-block;
+    height: 42px;
+    margin: 7px 12px 0 5px;
+    padding: 0 13px 0 14px;
+    border: 1px solid v.$color-white;
+    background: rgba(#fff, 0.8);
+    color: v.$color-orange;
+    font-size: 28px;
+    line-height: 40px;
+
+    @include m.sp {
+      height: 34px;
+      margin: 3px 8px 0 6px;
+      padding: 0 8px 0 10px;
+      font-size: 22px;
+      line-height: 32px;
+    }
+  }
+
+  &__btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 15px 20px 20px;
+    border: 1px solid v.$color-orange;
+    border-radius: v.$radius-md;
+    background: v.$color-white;
+    color: v.$color-orange;
+    font-size: 18px;
+    font-weight: v.$fw-bold;
+    line-height: 1.3;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.88;
+    }
+
+    @include m.sp {
+      justify-content: center;
+      font-size: 16px;
+      padding: 16px 15px;
+    }
+  }
+}
