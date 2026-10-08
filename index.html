@@ -29,7 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -118,43 +118,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="p-hero__badge">都内中小企業 先着300社限定</span>
               <span class="p-hero__badge">すべて無料</span>
             </div>
-            <h1 class="p-hero__title">脱炭素に取り組む企業が、<br />選ばれる時代へ。</h1>
-            <div class="p-hero__lead">
-              <p>
-                「何から始めたらいいかわからない」<br />そこから一歩を踏み出した企業が、<br />企業の「競争力」を手にしています。
-              </p>
-              <p>企業価値を高める脱炭素経営を<br />クール・ネット東京が無料でサポートします。</p>
-            </div>
+            <h1 class="p-hero__title">
+              省エネ・CO<sub>2</sub>の"見える化"、<br />まずは<span class="p-hero__title-em">無料</span>で始めませんか？
+            </h1>
+            <p class="p-hero__lead">
+              都内中小企業300社限定・すべて無料。<br />CO<sub>2</sub>排出量の可視化から省エネ施策の提案まで、<br />専門知識無しで進められます。
+            </p>
             <div class="p-hero__buttons">
+              <!-- TODO: リンク先未確定 (資料ダウンロード) -->
+              <a href="#" class="c-btn c-btn--white c-btn--icon">
+                <span>資料ダウンロード</span>
+                <span class="c-btn__icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="M10 13L6 9L7.0625 7.9375L9.25 10.125V3H10.75V10.125L12.9375 7.9375L14 9L10 13ZM5.49417 16C5.08139 16 4.72917 15.8531 4.4375 15.5594C4.14583 15.2656 4 14.9125 4 14.5V13H5.5V14.5H14.5V13H16V14.5C16 14.9125 15.8531 15.2656 15.5592 15.5594C15.2653 15.8531 14.9119 16 14.4992 16H5.49417Z" fill="currentColor" /></svg>
+                </span>
+              </a>
+              <!-- TODO: リンク先未確定 (30分無料相談) -->
+              <a href="#" class="c-btn c-btn--white c-btn--icon">
+                <span>システムについて<br />30分無料相談</span>
+                <span class="c-btn__icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="M5 12H12V10.5H5V12ZM5 9.25H15V7.75H5V9.25ZM5 6.5H15V5H5V6.5ZM2 18V3.5C2 3.0875 2.14688 2.73438 2.44063 2.44063C2.73438 2.14688 3.0875 2 3.5 2H16.5C16.9125 2 17.2656 2.14688 17.5594 2.44063C17.8531 2.73438 18 3.0875 18 3.5V13.5C18 13.9125 17.8531 14.2656 17.5594 14.5594C17.2656 14.8531 16.9125 15 16.5 15H5L2 18ZM4.375 13.5H16.5V3.5H3.5V14.375L4.375 13.5Z" fill="currentColor" /></svg>
+                </span>
+              </a>
               <a
                 href="https://tokyo-mieruka.notion.site/entry2026"
                 target="_blank"
                 rel="noopener"
-                class="c-btn c-btn--orange"
+                class="c-btn c-btn--orange c-btn--icon p-hero__btn-entry"
               >
-                無料で申し込む
-                <span class="c-btn__arrow">
-                  <svg viewBox="0 0 12 12">
-                    <path d="M3 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" />
-                  </svg>
-                </span>
-              </a>
-              <a href="#support" class="c-btn c-btn--white">
-                支援内容を見る
-                <span class="c-btn__arrow"
-                  ><svg viewBox="0 0 12 12">
-                    <path d="M3 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" />
-                  </svg>
+                <span>お申込み（無料）</span>
+                <span class="c-btn__icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="M4.5 17C4.0875 17 3.73437 16.8531 3.44062 16.5594C3.14687 16.2656 3 15.9125 3 15.5V4.5C3 4.08181 3.14583 3.72375 3.4375 3.42583C3.72917 3.12806 4.08333 2.98611 4.5 3H11.7083L10.2083 4.5H4.5V15.5H15.5V9.79167L17 8.29167V15.5C17 15.9125 16.8531 16.2656 16.5594 16.5594C16.2656 16.8531 15.9125 17 15.5 17H4.5ZM8 12V8.8125L15.375 1.4375C15.5278 1.28472 15.6944 1.17361 15.875 1.10417C16.0556 1.03472 16.2396 1 16.4271 1C16.6271 1 16.8177 1.03472 16.999 1.10417C17.1802 1.17361 17.3468 1.2832 17.4988 1.43292L18.5625 2.5C18.7153 2.65278 18.8264 2.81944 18.8958 3C18.9653 3.18056 19 3.36806 19 3.5625C19 3.75694 18.9651 3.94507 18.8954 4.12688C18.8257 4.30854 18.7147 4.47458 18.5625 4.625L11.1875 12H8ZM9.5 10.5H10.5625L15.375 5.6875L14.8542 5.14583L14.3125 4.625L9.5 9.4375V10.5Z" fill="currentColor" /></svg>
                 </span>
               </a>
             </div>
           </div>
 
-          <div class="p-hero__icons" aria-hidden="false">
-            <img src="assets/images/icon-co2.png" alt="CO₂可視化システム" class="p-hero__icon p-hero__icon--co2" />
-            <img src="assets/images/icon-jinzai.png" alt="人材育成" class="p-hero__icon p-hero__icon--jinzai" />
-            <img src="assets/images/icon-torikumi.png" alt="取組提案" class="p-hero__icon p-hero__icon--torikumi" />
-          </div>
+          <ul class="p-hero__circles">
+            <li class="p-hero__circle p-hero__circle--co2">
+              <img src="assets/images/hero-illust-co2.svg" alt="" class="p-hero__circle-illust" width="100" height="115" />
+              <div class="p-hero__circle-body">
+                <p class="p-hero__circle-title">CO<sub>2</sub>の見える化</p>
+                <p class="p-hero__circle-text">自社のCO<sub>2</sub>排出量を<br />把握するシステムを<br />無料で提供します</p>
+              </div>
+            </li>
+            <li class="p-hero__circle p-hero__circle--jinzai">
+              <img src="assets/images/hero-illust-jinzai.svg" alt="" class="p-hero__circle-illust" width="120" height="142" />
+              <div class="p-hero__circle-body">
+                <p class="p-hero__circle-title">人材育成</p>
+                <p class="p-hero__circle-text">
+                  最短30分で脱炭素経営の<br />基礎が学べます。<br />中小企業の皆様の脱炭素化に<br />役立つ最新情報も<br />ご案内します
+                </p>
+              </div>
+            </li>
+            <li class="p-hero__circle p-hero__circle--torikumi">
+              <img src="assets/images/hero-illust-torikumi.svg" alt="" class="p-hero__circle-illust" width="124" height="126" />
+              <div class="p-hero__circle-body">
+                <p class="p-hero__circle-title">省エネ施策の取組提案</p>
+                <p class="p-hero__circle-text">
+                  中小企業の皆様の現状を<br />もとに、専門家が省エネに<br />向けた具体的な取組みを<br />提案します。
+                </p>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 
