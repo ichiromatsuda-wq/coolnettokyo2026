@@ -26,13 +26,10 @@
     gap: 40px 60px;
     align-items: stretch;
 
+    // PC: 列間は両端揃えで確保 (コンテナ 1024px で 1024 - 459 - 512 = 53px = Figma)
     @media (min-width: 1050px) {
       grid-template-columns: 459px 512px;
       justify-content: space-between;
-    }
-
-    // 1050〜1070px はコンテナ幅が 459 + 60 + 512 = 1031px に満たずはみ出すため、列間を詰める
-    @media (min-width: 1050px) and (max-width: 1070px) {
       column-gap: 0;
     }
 

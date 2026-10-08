@@ -1196,10 +1196,6 @@ main section[id] {
   .p-trouble__top {
     grid-template-columns: 459px 512px;
     justify-content: space-between;
-  }
-}
-@media (min-width: 1050px) and (max-width: 1070px) {
-  .p-trouble__top {
     column-gap: 0;
   }
 }
