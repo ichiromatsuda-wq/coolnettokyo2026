@@ -2473,8 +2473,6 @@ main section[id] {
   display: flex;
   justify-content: flex-end;
   margin-top: auto;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #D8E3E3;
 }
 .p-voice__toggle {
   display: inline-flex;
@@ -2494,32 +2492,6 @@ main section[id] {
   display: none;
 }
 .p-voice__toggle-icon {
-  width: 20px;
-  height: 20px;
-}
-.p-voice__detail {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 3px;
-  padding: 5px 5px 5px 10px;
-  border-radius: 3px;
-  background: #FFFFFF;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  color: #F28A13;
-  transition: opacity 0.2s ease;
-}
-.p-voice__detail:hover {
-  opacity: 0.7;
-}
-.p-voice__detail-icon {
-  width: 20px;
-  height: 20px;
-}
-.p-voice__detail-icon svg {
   width: 20px;
   height: 20px;
 }
