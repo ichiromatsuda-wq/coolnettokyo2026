@@ -155,7 +155,8 @@ table {
 }
 
 .c-tag {
-  display: inline-block;
+  display: block;
+  width: fit-content;
   font-family: "Inter", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -1299,13 +1300,17 @@ table {
 
 .p-support {
   background: #006159;
-  padding: 100px 0 110px;
+  padding: 100px 0;
   color: #FFFFFF;
 }
 @media (max-width: 1049px) {
   .p-support {
     padding: 60px 0 70px;
   }
+}
+.p-support sub {
+  font-size: 0.6em;
+  line-height: 0;
 }
 .p-support__inner {
   width: 100%;
@@ -1319,49 +1324,67 @@ table {
   }
 }
 .p-support__tag {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
-  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.6);
 }
 .p-support__title {
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1.5;
+  display: inline;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
   color: #FFFFFF;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1em;
 }
 @media (max-width: 1049px) {
   .p-support__title {
     font-size: 24px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
   }
 }
 .p-support__title .c-section-title__num {
-  color: #FFBB00;
+  color: #F28A13;
+  font-size: 50px;
+  margin-right: 0;
+}
+@media (max-width: 1049px) {
+  .p-support__title .c-section-title__num {
+    font-size: 36px;
+  }
+}
+.p-support__title-line {
+  display: inline-block;
+  line-height: 1.7;
+}
+@media (max-width: 1049px) {
+  .p-support__title-line {
+    line-height: 1.5;
+  }
+}
+.p-support__title-line--num {
+  padding-bottom: 2px;
+  line-height: 1;
 }
 .p-support__head {
-  display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 @media (max-width: 1049px) {
   .p-support__head {
     margin-bottom: 30px;
   }
 }
-.p-support__head-badge {
-  margin-bottom: 6px;
+.p-support__title-wrap {
+  line-height: 1;
 }
-@media (max-width: 1049px) {
-  .p-support__head-badge {
-    margin-bottom: 0;
-  }
+.p-support__head-badge {
+  vertical-align: bottom;
+  margin-left: 15px;
+  padding: 10px 15px;
+  line-height: 1;
 }
 .p-support__cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 @media (max-width: 1049px) {
   .p-support__cards {
@@ -1370,28 +1393,34 @@ table {
   }
 }
 .p-support__card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   background: #FFFFFF;
-  border-radius: 10px;
-  padding: 32px 30px;
+  border-radius: 6px;
+  padding: 30px;
   color: #1A1A1A;
 }
 @media (max-width: 1049px) {
   .p-support__card {
+    gap: 14px;
     padding: 24px 22px;
   }
 }
 .p-support__card-num {
-  font-size: 14px;
-  color: #666666;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  margin-bottom: 12px;
+  margin-bottom: -5px;
+  font-family: "Inter", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  color: #006159;
 }
 .p-support__card-title {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
   color: #006159;
-  margin-bottom: 18px;
 }
 @media (max-width: 1049px) {
   .p-support__card-title {
@@ -1399,14 +1428,22 @@ table {
   }
 }
 .p-support__card-text {
-  font-size: 14.5px;
-  line-height: 1.85;
+  font-size: 16px;
+  line-height: 1.7;
+  letter-spacing: 0.05em;
   color: #1A1A1A;
 }
 @media (max-width: 1049px) {
   .p-support__card-text {
     font-size: 14px;
   }
+}
+.p-support__card-note {
+  margin-top: -15px;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  color: #1A1A1A;
 }
 
 .p-table {

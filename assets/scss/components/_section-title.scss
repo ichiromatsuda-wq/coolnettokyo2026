@@ -3,7 +3,8 @@
 
 // セクション小タグ ("Trouble", "Support" 等)
 .c-tag {
-  display: inline-block;
+  display: block;
+  width: fit-content;
   font-family: v.$font-en;
   font-size: 14px;
   font-weight: 300;
