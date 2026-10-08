@@ -7,7 +7,7 @@
   padding: 70px 20px;
 
   @include m.sp {
-    padding: 36px 20px;
+    padding: 36px 20px 92px; // 下部固定の CV バー (56px) 分を確保
   }
 
   &__inner {

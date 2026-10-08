@@ -563,6 +563,87 @@ main section[id] {
   opacity: 0.7;
 }
 
+.l-header__cv {
+  position: absolute;
+  top: calc(100% + 30px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  overflow: hidden;
+  border-radius: 6px 0 0 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(8px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+.l-header.is-scrolled .l-header__cv {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+@media (max-width: 1049px) {
+  .l-header__cv {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    width: auto;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: #FFFFFF;
+    border-radius: 0;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(8px);
+  }
+  .l-header:has(.l-header__hamburger.is-open) .l-header__cv {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.l-header__cv-btn {
+  gap: 5px;
+  min-width: 0;
+  min-height: 50px;
+  padding: 10px 5px 10px 10px;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.l-header__cv-btn.c-btn--white {
+  border-bottom: 1px solid #F28A13;
+}
+.l-header__cv-btn .c-btn__icon,
+.l-header__cv-btn .c-btn__icon svg {
+  width: 16px;
+  height: 16px;
+}
+@media (max-width: 1049px) {
+  .l-header__cv-btn {
+    flex: 1 1 0;
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: 4px;
+    min-height: 56px;
+    padding: 8px 4px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .l-header__cv-btn.c-btn--white {
+    border-bottom: 0;
+    border-top: 1px solid #F28A13;
+  }
+  .l-header__cv-btn.c-btn--white + .c-btn--white {
+    border-left: 1px solid #F28A13;
+  }
+}
+
 .l-header__hamburger {
   position: absolute;
   top: 15px;
@@ -3137,7 +3218,7 @@ main section[id] {
 }
 @media (max-width: 1049px) {
   .l-footer {
-    padding: 36px 20px;
+    padding: 36px 20px 92px;
   }
 }
 .l-footer__inner {
