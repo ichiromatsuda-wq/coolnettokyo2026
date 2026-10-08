@@ -36,6 +36,77 @@
     window.addEventListener('scroll', updateHeader, { passive: true });
   }
 
+  // ツールチップ (PC: hover / focus、SP: タップで開閉。外側タップ・再タップ・Esc で閉じる)
+  const tooltips = document.querySelectorAll('.c-tooltip');
+
+  if (tooltips.length) {
+    const EDGE_MARGIN = 10;
+
+    // 画面端で見切れないよう横位置を補正
+    const placeTooltip = (tooltip) => {
+      const body = tooltip.querySelector('.c-tooltip__body');
+      if (!body) return;
+      body.style.setProperty('--tt-shift', '0px');
+      const rect = body.getBoundingClientRect();
+      const viewportWidth = document.documentElement.clientWidth;
+      let shift = 0;
+      if (rect.right > viewportWidth - EDGE_MARGIN) {
+        shift = viewportWidth - EDGE_MARGIN - rect.right;
+      }
+      if (rect.left + shift < EDGE_MARGIN) {
+        shift = EDGE_MARGIN - rect.left;
+      }
+      body.style.setProperty('--tt-shift', `${Math.round(shift)}px`);
+    };
+
+    const closeAll = (except) => {
+      tooltips.forEach((tooltip) => {
+        if (tooltip !== except) tooltip.classList.remove('is-open');
+      });
+    };
+
+    tooltips.forEach((tooltip) => {
+      const btn = tooltip.querySelector('.c-tooltip__btn');
+      if (!btn) return;
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willOpen = !tooltip.classList.contains('is-open');
+        closeAll(tooltip);
+        tooltip.classList.remove('is-dismissed');
+        tooltip.classList.toggle('is-open', willOpen);
+        if (willOpen) placeTooltip(tooltip);
+      });
+
+      tooltip.addEventListener('mouseenter', () => placeTooltip(tooltip));
+      btn.addEventListener('focus', () => placeTooltip(tooltip));
+
+      // Esc で消したものは、ポインタ・フォーカスが外れたら再表示可能に戻す
+      tooltip.addEventListener('mouseleave', () => tooltip.classList.remove('is-dismissed'));
+      btn.addEventListener('blur', () => tooltip.classList.remove('is-dismissed'));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.c-tooltip')) closeAll();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      tooltips.forEach((tooltip) => {
+        if (tooltip.classList.contains('is-open') || tooltip.matches(':hover, :focus-within')) {
+          tooltip.classList.remove('is-open');
+          tooltip.classList.add('is-dismissed');
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      tooltips.forEach((tooltip) => {
+        if (tooltip.classList.contains('is-open')) placeTooltip(tooltip);
+      });
+    });
+  }
+
   // スムーススクロール (固定ヘッダー分のオフセット補正)
   const headerHeight = () => (header ? header.offsetHeight : 0);
 
