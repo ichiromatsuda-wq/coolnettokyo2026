@@ -290,6 +290,23 @@ table {
   z-index: 100;
   pointer-events: none;
   background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+@media (min-width: 1050px) {
+  .l-header {
+    position: fixed;
+  }
+  .l-header.is-scrolled {
+    background: #FFFFFF;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
+  }
+  .l-header.is-scrolled .l-header__brand {
+    background: transparent;
+  }
+  .l-header.is-scrolled .l-header__nav-link {
+    color: #1A1A1A;
+  }
 }
 
 .l-header__inner {
@@ -315,6 +332,7 @@ table {
   padding: 15px 20px;
   height: 71px;
   pointer-events: auto;
+  transition: background-color 0.3s ease;
 }
 @media (max-width: 1049px) {
   .l-header__brand {
@@ -341,7 +359,7 @@ table {
   flex-shrink: 0;
   width: 1px;
   height: 37px;
-  background: rgba(0, 0, 0, 0.18);
+  background: #DDDDDD;
 }
 @media (max-width: 1049px) {
   .l-header__brand-divider {
@@ -359,18 +377,23 @@ table {
 }
 
 .l-header__brand-sub {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
-  color: #595959;
+  color: #00A1E9;
   margin: 0;
   line-height: 1;
+}
+@media (max-width: 1049px) {
+  .l-header__brand-sub {
+    font-size: 10px;
+  }
 }
 
 .l-header__brand-title {
   font-size: 12px;
   font-weight: 700;
   color: #333;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   margin: 0;
   line-height: 1;
 }
@@ -379,7 +402,8 @@ table {
   display: flex;
   align-items: center;
   gap: 30px;
-  padding: 11px 24px;
+  height: 71px;
+  padding: 0 30px 0 0;
   pointer-events: auto;
 }
 @media (max-width: 1049px) {
@@ -409,26 +433,11 @@ table {
   letter-spacing: 0.05em;
   line-height: 1;
   white-space: nowrap;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.3s ease;
   pointer-events: auto;
 }
 .l-header__nav-link:hover {
   opacity: 0.7;
-}
-
-.l-header__cta {
-  min-width: 180px;
-  min-height: 50px;
-  padding: 15px 5px 15px 15px;
-  font-size: 14px;
-  letter-spacing: 0.05em;
-  justify-content: flex-start;
-  text-align: left;
-}
-.l-header__cta > p,
-.l-header__cta > span:first-child {
-  flex: 1 1 auto;
-  text-align: left;
 }
 
 .l-header__hamburger {

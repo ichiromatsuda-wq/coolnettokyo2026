@@ -24,8 +24,19 @@
     });
   }
 
-  // スムーススクロール (固定ヘッダー分のオフセット補正)
   const header = document.getElementById('header');
+
+  // スクロール時ヘッダー (PC: 白背景 + 影)
+  if (header) {
+    const SCROLL_THRESHOLD = 80;
+    const updateHeader = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > SCROLL_THRESHOLD);
+    };
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  }
+
+  // スムーススクロール (固定ヘッダー分のオフセット補正)
   const headerHeight = () => (header ? header.offsetHeight : 0);
 
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
