@@ -187,8 +187,14 @@
       align-self: center;
     }
 
-    @include m.sp {
-      zoom: 0.64;
+    // 狭い SP: 組み合わせのままだと円内の文字が 12px 未満になるため縦積み (左右交互に少し重ねる)
+    @media (max-width: 599px) {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 335px;
+      height: auto;
+      zoom: 1;
     }
   }
 
@@ -235,6 +241,31 @@
       &::before { top: 48px; }
       .p-hero__circle-body { top: 140px; left: 12px; width: 240px; }
       .p-hero__circle-title { font-size: 24px; }
+    }
+
+    // 0.85 倍で説明文 13.6px (最小 12px を確保)
+    @media (max-width: 599px) {
+      position: relative;
+      top: auto;
+      left: auto;
+      zoom: 0.85;
+
+      &--co2 {
+        align-self: flex-start;
+        height: 308px;
+      }
+
+      &--jinzai {
+        align-self: flex-end;
+        height: 318px;
+        margin-top: -60px;
+      }
+
+      &--torikumi {
+        align-self: flex-start;
+        height: 313px;
+        margin-top: -60px;
+      }
     }
   }
 

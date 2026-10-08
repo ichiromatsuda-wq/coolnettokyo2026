@@ -827,9 +827,14 @@ table {
     align-self: center;
   }
 }
-@media (max-width: 1049px) {
+@media (max-width: 599px) {
   .p-hero__circles {
-    zoom: 0.64;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 335px;
+    height: auto;
+    zoom: 1;
   }
 }
 .p-hero__circle {
@@ -890,6 +895,28 @@ table {
 }
 .p-hero__circle--torikumi .p-hero__circle-title {
   font-size: 24px;
+}
+@media (max-width: 599px) {
+  .p-hero__circle {
+    position: relative;
+    top: auto;
+    left: auto;
+    zoom: 0.85;
+  }
+  .p-hero__circle--co2 {
+    align-self: flex-start;
+    height: 308px;
+  }
+  .p-hero__circle--jinzai {
+    align-self: flex-end;
+    height: 318px;
+    margin-top: -60px;
+  }
+  .p-hero__circle--torikumi {
+    align-self: flex-start;
+    height: 313px;
+    margin-top: -60px;
+  }
 }
 .p-hero__circle-illust {
   position: absolute;
