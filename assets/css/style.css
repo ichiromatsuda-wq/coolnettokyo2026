@@ -2842,7 +2842,7 @@ table {
 .p-coolnet__cta-row {
   display: flex;
   gap: 20px;
-  margin-top: 30px;
+  margin-top: 20px;
   justify-content: flex-end;
 }
 @media (max-width: 1049px) {
@@ -3090,7 +3090,7 @@ table {
 .l-footer {
   background: #041818;
   color: #FFFFFF;
-  padding: 60px 20px;
+  padding: 70px 20px;
 }
 @media (max-width: 1049px) {
   .l-footer {
@@ -3102,28 +3102,30 @@ table {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 30px;
   align-items: center;
   text-align: center;
 }
 .l-footer__info {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 15px;
 }
 .l-footer__org {
   font-size: 14px;
   letter-spacing: 0.05em;
-  line-height: 1.6;
+  line-height: 1;
 }
 @media (max-width: 1049px) {
   .l-footer__org {
     font-size: 12px;
+    line-height: 1.6;
   }
 }
 .l-footer__operator {
   font-size: 12px;
   letter-spacing: 0.05em;
+  line-height: 1;
 }
 .l-footer__operator a {
   text-decoration: underline;
@@ -3137,7 +3139,7 @@ table {
 .l-footer__links {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 20px;
   font-size: 14px;
 }
 @media (max-width: 1049px) {
@@ -3150,11 +3152,14 @@ table {
   color: #FFFFFF;
   text-decoration: underline;
 }
+.l-footer__links .sep + a {
+  text-decoration: none;
+}
 .l-footer__links .sep {
   display: inline-block;
   width: 1px;
-  height: 18px;
-  background: rgba(255, 255, 255, 0.4);
+  height: 24px;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 @media (min-width: 1050px) {
