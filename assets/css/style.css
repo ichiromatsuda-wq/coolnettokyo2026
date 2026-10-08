@@ -3302,3 +3302,15 @@ main section[id] {
 .u-nowrap {
   display: inline-block;
 }
+
+@media (min-width: 392px) and (max-width: 479px) {
+  .u-nowrap--loose {
+    display: inline;
+  }
+}
+
+@media (max-width: 359px) {
+  .u-nowrap--xs-loose {
+    display: inline;
+  }
+}

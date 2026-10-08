@@ -35,3 +35,6 @@
 .u-mt-40 { margin-top: 40px; }
 .u-center { text-align: center; }
 .u-nowrap { display: inline-block; } // 句の途中で折り返さない (句の前でのみ改行)
+// 句ごと次行に送られて前の行に大きな空白ができる幅でのみ .u-nowrap を解除
+.u-nowrap--loose { @media (min-width: 392px) and (max-width: 479px) { display: inline; } }
+.u-nowrap--xs-loose { @media (max-width: 359px) { display: inline; } }
