@@ -109,6 +109,9 @@
 
   // 高さアニメーション付き開閉 (導入企業の声「続きを読む」/ FAQ で共用)
   const animateHeight = (el, to, onEnd) => {
+    // 連打時に前回アニメーションの完了処理が走らないよう世代を記録
+    const token = (Number(el.dataset.animToken) || 0) + 1;
+    el.dataset.animToken = String(token);
     const from = el.getBoundingClientRect().height;
     el.style.height = `${from}px`;
     void el.offsetHeight; // reflow して開始値を確定
@@ -121,6 +124,7 @@
     const done = (e) => {
       if (e.target !== el || e.propertyName !== 'height') return;
       el.removeEventListener('transitionend', done);
+      if (el.dataset.animToken !== String(token)) return;
       if (onEnd) onEnd();
     };
     el.addEventListener('transitionend', done);
@@ -145,6 +149,29 @@
       } else {
         animateHeight(wrap, collapsedHeight, () => {
           wrap.style.height = '';
+        });
+      }
+    });
+  });
+
+  // よくあるご質問 アコーディオン (各項目は独立して開閉)
+  document.querySelectorAll('.js-faq-toggle').forEach((btn) => {
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!panel) return;
+
+    btn.addEventListener('click', () => {
+      const willOpen = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      if (willOpen) {
+        panel.hidden = false;
+        panel.style.height = '0px';
+        animateHeight(panel, panel.scrollHeight, () => {
+          panel.style.height = '';
+        });
+      } else {
+        animateHeight(panel, 0, () => {
+          panel.hidden = true;
+          panel.style.height = '';
         });
       }
     });

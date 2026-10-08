@@ -1,0 +1,172 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// =================================================================
+// よくあるご質問 (Figma 49:942 / 展開時 49:1102)
+// =================================================================
+.p-faq {
+  background: v.$color-white;
+  padding: 100px 0;
+
+  @include m.sp {
+    padding: 60px 0;
+  }
+
+  // 下付き文字で行高が広がらないようにする
+  sub {
+    line-height: 0;
+  }
+
+  &__inner {
+    @include m.container(v.$container-pc);
+  }
+
+  &__head {
+    margin-bottom: 40px;
+
+    @include m.sp {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: v.$fw-extrabold;
+    color: v.$color-primary;
+    line-height: 1.7;
+    letter-spacing: 0.1em;
+
+    @include m.sp {
+      font-size: 22px;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include m.sp {
+      gap: 12px;
+    }
+  }
+
+  &__item {
+    padding: 20px;
+    background: v.$color-bg-light;
+
+    @include m.sp {
+      padding: 16px 14px;
+    }
+  }
+
+  &__q {
+    margin: 0;
+  }
+
+  &__q-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+
+    &[aria-expanded="true"] .p-faq__icon--plus,
+    &[aria-expanded="false"] .p-faq__icon--minus {
+      display: none;
+    }
+  }
+
+  // Q / A バッジ (34×34 円)
+  &__badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: v.$color-primary;
+    color: v.$color-white;
+    font-family: v.$font-en;
+    font-size: 20px;
+    font-weight: v.$fw-bold;
+    line-height: 1;
+
+    @include m.sp {
+      width: 28px;
+      height: 28px;
+      font-size: 16px;
+    }
+
+    &--a {
+      background: v.$color-white;
+      color: v.$color-primary;
+    }
+  }
+
+  &__q-text {
+    flex: 1 1 auto;
+    font-size: 18px;
+    font-weight: v.$fw-bold;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+    color: v.$color-primary;
+
+    @include m.sp {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    color: v.$color-green;
+
+    @include m.sp {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  // -- 回答 (開閉は JS で高さアニメーション) --
+  &__a {
+    overflow: hidden;
+    transition: height 0.3s ease;
+  }
+
+  &__a-inner {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px; // 区切り線 (Figma: 高さ 0 の LINE) 分を差し引き
+    padding-top: 15px;
+    border-top: 1px solid rgba(v.$color-primary, 0.5);
+  }
+
+  &__a-text {
+    padding-top: 5px;
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+    color: v.$color-text;
+
+    @include m.sp {
+      padding-top: 2px;
+      font-size: 14px;
+    }
+  }
+
+  &__link {
+    color: v.$color-orange;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
