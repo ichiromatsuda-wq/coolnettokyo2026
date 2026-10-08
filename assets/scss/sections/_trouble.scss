@@ -1,13 +1,19 @@
 @use "../variables" as v;
 @use "../mixins" as m;
 
-// "こんなお悩みはありませんか？" セクション
+// "こんなお悩みはありませんか？" セクション (Figma 49:326)
+// お悩み → 脱炭素経営 → 区切り線 → 先延ばし → CTA ボックス
 .p-trouble {
   background: v.$color-bg-light;
-  padding: 100px 0 80px;
+  padding: 100px 0;
 
   @include m.sp {
     padding: 60px 0 50px;
+  }
+
+  // 下付き文字で行高が広がらないようにする
+  sub {
+    line-height: 0;
   }
 
   &__inner {
@@ -18,10 +24,11 @@
     display: grid;
     grid-template-columns: minmax(360px, 1fr) minmax(360px, 1.2fr);
     gap: 40px 60px;
-    align-items: start;
+    align-items: stretch;
 
     @media (min-width: 1050px) {
-      grid-template-columns: minmax(420px, 1fr) minmax(460px, 1.2fr);
+      grid-template-columns: 459px 512px;
+      justify-content: space-between;
     }
 
     @include m.sp {
@@ -31,17 +38,17 @@
   }
 
   &__title-wrap {
-    @include m.pc {
-      padding-top: 20px;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   &__title {
-    font-size: 32px;
-    font-weight: v.$fw-bold;
+    font-size: 30px;
+    font-weight: v.$fw-extrabold;
     color: v.$color-primary;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
+    line-height: 1.7;
+    letter-spacing: 0.1em;
 
     @media (min-width: 1050px) {
       white-space: nowrap;
@@ -49,16 +56,19 @@
 
     @include m.sp {
       font-size: 22px;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
     }
   }
 
+  // PC: 左カラム下揃え (画像に下線込み 459×291)
   &__illust {
     display: none;
 
     @include m.pc {
       display: block;
-      margin-top: 80px;
-      width: 320px;
+      margin-top: auto;
+      width: 459px;
       height: auto;
     }
   }
@@ -84,31 +94,214 @@
   }
 
   &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     background: v.$color-white;
-    border-radius: 10px;
-    padding: 22px 28px;
-    box-shadow: 0 2px 8px rgba(#000, 0.04);
+    border-radius: v.$radius-md;
+    padding: 24px 30px;
 
     @include m.sp {
+      gap: 8px;
       padding: 18px 20px;
     }
   }
 
   &__card-title {
-    font-size: 19px;
+    font-size: 20px;
     font-weight: v.$fw-bold;
     color: v.$color-primary;
-    line-height: 1.4;
-    margin-bottom: 8px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+
+    @include m.sp {
+      font-size: 17px;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  &__card-text {
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+    color: #444444;
+
+    @include m.sp {
+      font-size: 14px;
+    }
+  }
+
+  // -- 脱炭素経営 / 先延ばし 共通見出し --
+  &__block-title {
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight: v.$fw-extrabold;
+    color: v.$color-primary;
+    line-height: 1.7;
+    letter-spacing: 0.1em;
+
+    @include m.sp {
+      margin-bottom: 24px;
+      font-size: 22px;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  // -- 脱炭素経営は、もう「大企業だけの話」ではありません --
+  &__shift {
+    margin-top: 80px;
+
+    @include m.sp {
+      margin-top: 40px;
+    }
+  }
+
+  &__shift-list {
+    display: flex;
+    gap: 10px;
+
+    @include m.sp {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  // 右側に山形の矢印 (幅 20px) が付いたカード
+  &__shift-item {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 40px 20px 20px;
+    background: v.$color-white;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%);
+
+    @include m.sp {
+      padding: 20px 20px 36px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), 50% 100%, 0 calc(100% - 16px));
+    }
+
+    &--future {
+      background: v.$color-primary;
+
+      .p-trouble__shift-label {
+        background: v.$color-white;
+        color: v.$color-orange;
+      }
+
+      .p-trouble__shift-text {
+        color: v.$color-white;
+      }
+    }
+  }
+
+  &__shift-label {
+    padding: 5px 10px;
+    border-radius: 3px;
+    background: v.$color-primary-light;
+    color: v.$color-primary;
+    font-size: 20px;
+    font-weight: v.$fw-bold;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
 
     @include m.sp {
       font-size: 17px;
     }
   }
 
-  &__card-text {
-    font-size: 14.5px;
+  &__shift-text {
+    font-size: 16px;
     line-height: 1.7;
+    letter-spacing: 0.05em;
+    color: v.$color-text;
+
+    @include m.sp {
+      font-size: 14px;
+    }
+  }
+
+  &__divider {
+    margin: 80px 0 0;
+    border: 0;
+    border-top: 1px solid rgba(v.$color-primary, 0.5);
+
+    @include m.sp {
+      margin-top: 40px;
+    }
+  }
+
+  // -- 対応を先延ばしにすると… --
+  &__delay {
+    margin-top: 80px;
+
+    @include m.sp {
+      margin-top: 40px;
+    }
+  }
+
+  &__delay-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include m.sp {
+      gap: 12px;
+    }
+  }
+
+  &__delay-item {
+    display: flex;
+    overflow: hidden;
+    border-radius: v.$radius-md;
+    background: v.$color-white;
+  }
+
+  &__delay-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    padding: 10px;
+    background: v.$color-primary;
+
+    @include m.sp {
+      width: 50px;
+      padding: 5px;
+    }
+  }
+
+  &__delay-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+
+    @include m.sp {
+      gap: 6px;
+      padding: 18px 20px;
+    }
+  }
+
+  &__delay-title {
+    font-size: 20px;
+    font-weight: v.$fw-bold;
+    color: v.$color-primary;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+
+    @include m.sp {
+      font-size: 17px;
+      line-height: 1.5;
+    }
+  }
+
+  &__delay-text {
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
     color: v.$color-text;
 
     @include m.sp {
@@ -118,12 +311,12 @@
 
   // 下部 - "1つでも当てはまる方へ" CTA ボックス
   &__cta {
-    margin-top: 70px;
-    background: linear-gradient(180deg, #00766c 0%, #003B36 100%);
+    margin-top: 80px;
+    background: linear-gradient(180deg, v.$color-primary 0%, #103C3D 100%);
     color: v.$color-white;
     text-align: center;
-    border-radius: 4px;
-    padding: 60px 30px 70px;
+    border-radius: v.$radius-md;
+    padding: 60px 30px;
 
     @include m.sp {
       margin-top: 40px;
@@ -135,36 +328,41 @@
     display: inline-block;
     background: v.$color-yellow;
     color: v.$color-text;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: v.$fw-bold;
-    padding: 6px 24px;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    padding: 8px 20px;
     border-radius: 999px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 
     @include m.sp {
       font-size: 13px;
       padding: 5px 18px;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
   }
 
   &__cta-title {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: v.$fw-bold;
-    line-height: 1.6;
-    letter-spacing: 0.04em;
+    line-height: 1.7;
+    letter-spacing: 0.1em;
 
     @include m.sp {
       font-size: 18px;
       line-height: 1.65;
+      letter-spacing: 0.04em;
     }
   }
 
   &__cta-lead {
-    margin-top: 26px;
-    font-size: 15px;
-    line-height: 1.85;
-    color: rgba(#fff, 0.92);
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: v.$fw-medium;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+    color: v.$color-white;
 
     @include m.sp {
       font-size: 13.5px;
