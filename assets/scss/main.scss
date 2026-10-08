@@ -34,3 +34,4 @@
 .u-hide-sp { @include mixins.sp { display: none !important; } }
 .u-mt-40 { margin-top: 40px; }
 .u-center { text-align: center; }
+.u-nowrap { display: inline-block; } // 句の途中で折り返さない (句の前でのみ改行)

@@ -3298,3 +3298,7 @@ main section[id] {
 .u-center {
   text-align: center;
 }
+
+.u-nowrap {
+  display: inline-block;
+}
