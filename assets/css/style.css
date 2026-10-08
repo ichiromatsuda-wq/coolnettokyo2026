@@ -437,6 +437,15 @@ table {
   }
 }
 
+main section[id] {
+  scroll-margin-top: 12px;
+}
+@media (min-width: 1050px) {
+  main section[id] {
+    scroll-margin-top: 83px;
+  }
+}
+
 .l-header__brand {
   display: inline-flex;
   align-items: center;

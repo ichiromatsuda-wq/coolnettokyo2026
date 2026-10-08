@@ -38,6 +38,7 @@ $fw-black:    900;
 $container-pc:      1024px;
 $container-pc-wide: 1232px;
 $container-sp-pad:  20px;
+$header-height-pc:  71px; // 固定ヘッダーの高さ (アンカー着地位置の補正に使用)
 
 // -- Breakpoints --
 $bp-sp: 1049px;

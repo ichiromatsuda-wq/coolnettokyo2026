@@ -49,6 +49,15 @@
   }
 }
 
+// アンカー着地位置: PC は固定ヘッダーに被らないよう余白を確保 (SP のヘッダーは固定しない)
+main section[id] {
+  scroll-margin-top: 12px;
+
+  @include m.pc {
+    scroll-margin-top: v.$header-height-pc + 12px;
+  }
+}
+
 // -- 左ブランドコンテナ (背景 #F4F2EF, 右下角丸) --
 .l-header__brand {
   display: inline-flex;

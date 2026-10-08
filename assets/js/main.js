@@ -176,9 +176,7 @@
     });
   });
 
-  // スムーススクロール (固定ヘッダー分のオフセット補正)
-  const headerHeight = () => (header ? header.offsetHeight : 0);
-
+  // スムーススクロール (着地位置は CSS の scroll-margin-top で固定ヘッダー分を確保)
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       const href = a.getAttribute('href');
@@ -186,8 +184,7 @@
       const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
-      const top = target.getBoundingClientRect().top + window.scrollY - headerHeight() - 12;
-      window.scrollTo({ top, behavior: 'smooth' });
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 })();
