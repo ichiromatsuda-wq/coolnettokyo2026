@@ -11,6 +11,7 @@
       drawer.classList.toggle('is-open', open);
       hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
       drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      drawer.inert = !open; // 閉じている間はリンクにフォーカスさせない
       document.body.style.overflow = open ? 'hidden' : '';
     };
 
