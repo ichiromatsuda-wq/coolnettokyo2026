@@ -800,7 +800,7 @@ main section[id] {
   display: flex;
   align-items: flex-start;
 }
-@media (max-width: 1199px) {
+@media (max-width: 1209px) {
   .p-hero__inner {
     padding-left: 60px;
   }
@@ -930,6 +930,11 @@ main section[id] {
 @media (max-width: 1399px) {
   .p-hero__circles {
     zoom: 0.8;
+  }
+}
+@media (min-width: 1050px) and (max-width: 1099px) {
+  .p-hero__circles {
+    zoom: 0.76;
   }
 }
 @media (max-width: 1049px) {
@@ -1191,6 +1196,11 @@ main section[id] {
   .p-trouble__top {
     grid-template-columns: 459px 512px;
     justify-content: space-between;
+  }
+}
+@media (min-width: 1050px) and (max-width: 1070px) {
+  .p-trouble__top {
+    column-gap: 0;
   }
 }
 @media (max-width: 1049px) {

@@ -31,6 +31,11 @@
       justify-content: space-between;
     }
 
+    // 1050〜1070px はコンテナ幅が 459 + 60 + 512 = 1031px に満たずはみ出すため、列間を詰める
+    @media (min-width: 1050px) and (max-width: 1070px) {
+      column-gap: 0;
+    }
+
     @include m.sp {
       grid-template-columns: 1fr;
       gap: 26px;

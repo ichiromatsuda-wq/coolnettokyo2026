@@ -48,7 +48,8 @@
     display: flex;
     align-items: flex-start;
 
-    @media (max-width: 1199px) {
+    // 左余白 209px だと 1200〜1206px で円がはみ出すため、60px の適用を 1209px まで広げる
+    @media (max-width: 1209px) {
       padding-left: 60px;
     }
 
@@ -180,6 +181,11 @@
 
     @media (max-width: 1399px) {
       zoom: 0.8;
+    }
+
+    // 1050〜1099px は左余白 60 + 本文 585 + 円 (0.8倍 413) が画面幅を超えるため、さらに縮小 (説明文 12.2px)
+    @media (min-width: 1050px) and (max-width: 1099px) {
+      zoom: 0.76;
     }
 
     @media (max-width: 1049px) {
