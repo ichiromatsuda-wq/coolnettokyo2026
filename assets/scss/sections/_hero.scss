@@ -118,23 +118,19 @@
     }
   }
 
-  // "無料" オレンジ帯 (Figma 117×58、行頭から 5.6px 下に配置。文字は帯の中央)
+  // "無料" オレンジ帯 (Figma: 文字 48px / 帯 117×58)
+  // 前後の文字とベースラインで揃える。帯の高さは line-height + padding-bottom (52 + 6 = 58) で決め、
+  // 寸法はすべて em (= 48px 基準) にして SP の文字サイズにも追従させる
+  // margin-top は 2 行目の行高を Figma (48px × 1.3) に合わせるためのもので、帯の縦位置は動かさない
   &__title-em {
     display: inline-block;
-    vertical-align: top;
-    height: 58px;
-    margin: 5.6px 10px 0 5px;
-    padding: 0 9px 0 11px;
+    vertical-align: baseline;
+    margin: 0.117em 0.18em 0 0.125em;
+    padding: 0 0.085em 0.125em 0.2em;
     background: v.$color-orange;
-    font-size: 1.16em;
-    line-height: 58px;
-
-    @include m.sp {
-      height: auto;
-      margin: 3px 6px 0 3px;
-      padding: 0 6px 0 8px;
-      line-height: 1.4;
-    }
+    font-size: 1.2632em; // 48 / 38
+    line-height: 1.084; // 52 / 48
+    letter-spacing: 0.08em;
   }
 
   &__lead {

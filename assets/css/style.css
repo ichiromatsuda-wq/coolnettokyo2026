@@ -896,21 +896,13 @@ main section[id] {
 }
 .p-hero__title-em {
   display: inline-block;
-  vertical-align: top;
-  height: 58px;
-  margin: 5.6px 10px 0 5px;
-  padding: 0 9px 0 11px;
+  vertical-align: baseline;
+  margin: 0.117em 0.18em 0 0.125em;
+  padding: 0 0.085em 0.125em 0.2em;
   background: #F28A13;
-  font-size: 1.16em;
-  line-height: 58px;
-}
-@media (max-width: 1049px) {
-  .p-hero__title-em {
-    height: auto;
-    margin: 3px 6px 0 3px;
-    padding: 0 6px 0 8px;
-    line-height: 1.4;
-  }
+  font-size: 1.2632em;
+  line-height: 1.084;
+  letter-spacing: 0.08em;
 }
 .p-hero__lead {
   font-size: 18px;
