@@ -1,14 +1,19 @@
 @use "../variables" as v;
 @use "../mixins" as m;
 
-// "お申し込みから支援開始まで、5ステップ" セクション
+// "お申し込みから支援開始まで、5ステップ" セクション (Figma 49:889)
 .p-flow {
-  background: v.$color-primary;
-  color: v.$color-white;
-  padding: 90px 0 100px;
+  background: v.$color-bg-light;
+  color: v.$color-text;
+  padding: 100px 0;
 
   @include m.sp {
     padding: 50px 0 60px;
+  }
+
+  // 下付き文字で行高が広がらないようにする
+  sub {
+    line-height: 0;
   }
 
   &__inner {
@@ -16,34 +21,46 @@
   }
 
   &__head {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 
     @include m.sp {
       margin-bottom: 26px;
     }
   }
 
-  &__tag {
-    color: rgba(#fff, 0.7);
-    font-size: 14px;
-    margin-bottom: 14px;
-  }
-
   &__title {
-    font-size: 32px;
-    font-weight: v.$fw-bold;
-    color: v.$color-white;
-    letter-spacing: 0.04em;
-    line-height: 1.5;
-
-    .num {
-      color: v.$color-yellow;
-      font-size: 1.1em;
-      margin-right: 0.05em;
-    }
+    font-size: 30px;
+    font-weight: v.$fw-extrabold;
+    color: v.$color-primary;
+    letter-spacing: 0.1em;
+    line-height: 1;
 
     @include m.sp {
       font-size: 22px;
+      letter-spacing: 0.04em;
+    }
+
+    .num {
+      color: v.$color-orange;
+      font-size: 50px;
+
+      @include m.sp {
+        font-size: 36px;
+      }
+    }
+  }
+
+  // 1 行目は line-height 1.7、2 行目 "5ステップ" は 1em (Figma)
+  &__title-line {
+    display: inline-block;
+    line-height: 1.7;
+
+    @include m.sp {
+      line-height: 1.5;
+    }
+
+    &--num {
+      line-height: 1;
     }
   }
 
@@ -54,12 +71,16 @@
   }
 
   &__step {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     background: v.$color-white;
-    border-radius: 10px;
+    border-radius: v.$radius-md;
     color: v.$color-text;
-    padding: 24px 30px 30px;
+    padding: 30px;
 
     @include m.sp {
+      gap: 14px;
       padding: 20px 18px;
     }
   }
@@ -68,42 +89,38 @@
     display: flex;
     align-items: stretch;
     background: v.$color-primary-light;
-    border-radius: 6px;
+    border-radius: 3px;
     overflow: hidden;
-    margin-bottom: 18px;
-
-    @include m.sp {
-      margin-bottom: 14px;
-    }
   }
 
   &__step-num {
     background: v.$color-green;
     color: v.$color-white;
-    flex: 0 0 80px;
+    flex: 0 0 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px 12px;
+    gap: 3px;
+    padding: 10px;
+    font-family: v.$font-en;
+    font-weight: v.$fw-bold;
+    line-height: 1;
     text-align: center;
-    line-height: 1.2;
 
     .label {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      font-weight: v.$fw-bold;
+      font-size: 14px;
     }
+
     .no {
-      font-size: 22px;
-      font-weight: v.$fw-bold;
+      font-size: 30px;
     }
 
     @include m.sp {
       flex: 0 0 60px;
 
-      .label { font-size: 10px; }
-      .no { font-size: 18px; }
+      .label { font-size: 11px; }
+      .no { font-size: 22px; }
     }
   }
 
@@ -111,22 +128,23 @@
     flex: 1;
     display: flex;
     align-items: center;
-    font-size: 21px;
+    font-size: 20px;
     font-weight: v.$fw-bold;
     color: v.$color-primary;
-    padding: 0 20px;
-    letter-spacing: 0.03em;
-    line-height: 1.4;
+    padding: 10px 20px;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
 
     @include m.sp {
       font-size: 16px;
-      padding: 0 14px;
+      padding: 10px 14px;
     }
   }
 
   &__step-body {
-    font-size: 15px;
-    line-height: 1.85;
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
 
     p + p { margin-top: 10px; }
 

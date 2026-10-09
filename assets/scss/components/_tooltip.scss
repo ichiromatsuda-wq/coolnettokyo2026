@@ -1,0 +1,105 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+// =================================================================
+// ツールチップ (Figma 49:1395 ツールチップ)
+// PC: hover / キーボードフォーカスで表示、タップ・クリックで開閉 (.is-open)
+// 画面端では JS が --tt-shift で横位置を補正する
+// =================================================================
+.c-tooltip {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+// オレンジの "?" (16×16)
+.c-tooltip__btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: v.$color-orange;
+  color: v.$color-white;
+  font-family: v.$font-en;
+  font-size: 14px;
+  font-weight: v.$fw-bold;
+  line-height: 1;
+
+  // タップ領域を 32×32 に拡張
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+  }
+}
+
+.c-tooltip__body {
+  --tt-shift: 0px;
+
+  position: absolute;
+  bottom: calc(100% + 29px); // 矢印 (19px) + アイコンとの間 10px
+  left: calc(-1px + var(--tt-shift));
+  z-index: 20;
+  width: 320px;
+  max-width: calc(100vw - 20px);
+  padding: 10px;
+  border-radius: v.$radius-md;
+  background: v.$color-orange;
+  color: v.$color-white;
+  font-size: 14px;
+  font-weight: v.$fw-medium;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  text-align: left;
+  white-space: normal;
+  filter: drop-shadow(0 4px 10px rgba(#000, 0.2));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+
+  sub {
+    line-height: 0;
+  }
+
+  // 下向きの矢印 (左辺が垂直の直角三角形)
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: calc(10px - var(--tt-shift));
+    width: 20px;
+    height: 19px;
+    background: inherit;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+
+  // 手動改行の文言は内容幅に合わせる
+  &--auto {
+    width: max-content;
+  }
+
+}
+
+.c-tooltip.is-open .c-tooltip__body,
+.c-tooltip__btn:focus-visible + .c-tooltip__body {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (hover: hover) {
+  .c-tooltip:hover:not(.is-dismissed) .c-tooltip__body {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+.c-tooltip.is-dismissed .c-tooltip__body {
+  opacity: 0;
+  visibility: hidden;
+}

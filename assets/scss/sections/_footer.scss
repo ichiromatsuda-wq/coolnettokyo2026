@@ -4,10 +4,10 @@
 .l-footer {
   background: v.$color-footer;
   color: v.$color-white;
-  padding: 60px 20px;
+  padding: 70px 20px;
 
   @include m.sp {
-    padding: 36px 20px;
+    padding: 36px 20px 92px; // 下部固定の CV バー (56px) 分を確保
   }
 
   &__inner {
@@ -15,7 +15,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 30px;
     align-items: center;
     text-align: center;
   }
@@ -23,22 +23,24 @@
   &__info {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 15px;
   }
 
   &__org {
     font-size: 14px;
     letter-spacing: 0.05em;
-    line-height: 1.6;
+    line-height: 1;
 
     @include m.sp {
       font-size: 12px;
+      line-height: 1.6;
     }
   }
 
   &__operator {
     font-size: 12px;
     letter-spacing: 0.05em;
+    line-height: 1;
 
     a {
       text-decoration: underline;
@@ -53,7 +55,7 @@
   &__links {
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: 20px;
     font-size: 14px;
 
     @include m.sp {
@@ -66,11 +68,16 @@
       text-decoration: underline;
     }
 
+    // Figma: 「お問い合わせ」は下線なし
+    .sep + a {
+      text-decoration: none;
+    }
+
     .sep {
       display: inline-block;
       width: 1px;
-      height: 18px;
-      background: rgba(#fff, 0.4);
+      height: 24px;
+      background: rgba(#fff, 0.5);
     }
   }
 }
