@@ -1,12 +1,11 @@
 @use "../variables" as v;
 @use "../mixins" as m;
 
-// 最終 CTA "まず一歩、ここから始めませんか。"
+// CTA "まずは、貴社に合った方法でお気軽にどうぞ" (Figma CTA コンポーネント 49:50)
+// Support 03 の後 / FAQ の後 の 2 か所に配置
 .p-cta {
   background: v.$color-primary;
-  color: v.$color-white;
-  padding: 80px 0 90px;
-  text-align: center;
+  padding: 100px 0;
 
   @include m.sp {
     padding: 50px 0 60px;
@@ -16,66 +15,81 @@
     @include m.container(v.$container-pc);
   }
 
-  &__badge {
-    display: block;
-    width: 100%;
-    max-width: 1024px;
-    margin: 0 auto 36px;
-    background: v.$color-yellow;
-    color: v.$color-text;
-    font-size: 18px;
+  &__title {
+    margin-bottom: 60px;
+    font-size: 32px;
     font-weight: v.$fw-bold;
-    padding: 16px 20px;
-    border-radius: 4px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    color: v.$color-white;
+    text-align: center;
+
+    @include m.sp {
+      margin-bottom: 30px;
+      font-size: 20px;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @include m.sp {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    border-radius: v.$radius-md;
+    background: v.$color-white;
+
+    @include m.sp {
+      padding: 24px 20px;
+    }
+  }
+
+  &__card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__card-title {
+    font-size: 20px;
+    font-weight: v.$fw-bold;
+    line-height: 1.5;
     letter-spacing: 0.05em;
+    color: v.$color-primary;
+
+    @include m.sp {
+      font-size: 18px;
+    }
+  }
+
+  &__card-text {
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+    color: v.$color-text;
 
     @include m.sp {
       font-size: 14px;
-      padding: 14px 16px;
-      margin-bottom: 24px;
     }
   }
 
-  &__title {
-    font-size: 30px;
-    font-weight: v.$fw-bold;
-    line-height: 1.7;
-    letter-spacing: 0.04em;
-    margin: 0 auto 24px;
-
-    @include m.sp {
-      font-size: 19px;
-      line-height: 1.65;
-      margin-bottom: 18px;
-    }
-  }
-
-  &__lead {
-    font-size: 14px;
-    line-height: 1.85;
-    color: rgba(#fff, 0.92);
-    margin-bottom: 40px;
-
-    @include m.sp {
-      font-size: 13px;
-      margin-bottom: 32px;
-    }
-  }
-
-  &__btn-wrap {
-    display: flex;
-    justify-content: center;
-
-    .c-btn {
-      width: 100%;
-      max-width: 580px;
-      min-height: 76px;
-      font-size: 22px;
-
-      @include m.sp {
-        min-height: 60px;
-        font-size: 17px;
-      }
-    }
+  // ボタンはカード下端に揃える
+  &__btn {
+    width: 100%;
+    min-height: 0;
+    margin-top: auto;
+    padding: 20px 10px 20px 20px;
+    line-height: 1;
   }
 }

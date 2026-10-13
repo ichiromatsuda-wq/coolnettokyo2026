@@ -4,16 +4,32 @@
 // =================================================================
 // ヘッダー (Figma node 13:748 - PC / 13:1467 - SP)
 // ヒーローの上にオーバーレイ表示。左コンテナのみ #F4F2EF 背景、
-// 右側 (ナビ + CTA / ハンバーガー) は透明。
+// 右側 (ナビ / ハンバーガー) は透明。
+// PC / SP とも固定表示。80px スクロールで白背景 + 影 (Figma 49:1376 LP修正版-スクロール時)
 // =================================================================
 .l-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
   pointer-events: none; // 透明部はクリックスルー
   background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  &.is-scrolled {
+    background: v.$color-white;
+    box-shadow: 0 4px 15px rgba(#000, 0.1);
+    pointer-events: auto;
+
+    .l-header__brand {
+      background: transparent;
+    }
+
+    .l-header__nav-link {
+      color: v.$color-text;
+    }
+  }
 }
 
 .l-header__inner {
@@ -29,6 +45,15 @@
   }
 }
 
+// アンカー着地位置: 固定ヘッダーに被らないよう余白を確保
+main section[id] {
+  scroll-margin-top: v.$header-height-sp-compact + 12px; // 着地時はスクロール済み = コンパクトヘッダー
+
+  @include m.pc {
+    scroll-margin-top: v.$header-height-pc + 12px;
+  }
+}
+
 // -- 左ブランドコンテナ (背景 #F4F2EF, 右下角丸) --
 .l-header__brand {
   display: inline-flex;
@@ -39,13 +64,16 @@
   padding: 15px 20px;
   height: 71px;
   pointer-events: auto;
+  transition: background-color 0.3s ease;
 
   @include m.sp {
     flex-direction: column;
     align-items: flex-start;
-    height: auto;
+    justify-content: center;
+    height: v.$header-height-sp;
     gap: 5px;
     padding: 5px 15px 15px;
+    transition: background-color 0.3s ease, height 0.3s ease, padding 0.3s ease, gap 0.3s ease;
   }
 }
 
@@ -55,7 +83,9 @@
   display: block;
 
   @include m.sp {
+    max-height: 44px;
     padding-bottom: 5px;
+    transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.2s ease;
   }
 }
 
@@ -64,11 +94,12 @@
   flex-shrink: 0;
   width: 1px;
   height: 37px;
-  background: rgba(#000, 0.18);
+  background: #DDDDDD;
 
   @include m.sp {
     width: 100%;
     height: 1px;
+    transition: height 0.3s ease, opacity 0.2s ease;
   }
 }
 
@@ -81,28 +112,67 @@
 }
 
 .l-header__brand-sub {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: v.$fw-medium;
-  color: #595959;
+  color: #00A1E9;
   margin: 0;
   line-height: 1;
+
+  @include m.sp {
+    font-size: 10px; // SP は既存サイズを維持 (ver2 は PC のみ)
+    transition: font-size 0.3s ease;
+  }
 }
 
 .l-header__brand-title {
   font-size: 12px;
   font-weight: v.$fw-bold;
   color: #333;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   margin: 0;
   line-height: 1;
 }
 
-// -- 右側コンテナ (ナビ + CTA, 透明) --
+// -- SP コンパクトヘッダー (80px 超): サイト名 2 行 + ハンバーガーのみ、高さ 52px --
+// ヘッダーは fixed のためページ全長は変わらない。高さ・余白は transition で変化
+@include m.sp {
+  .l-header.is-scrolled {
+    .l-header__brand {
+      height: v.$header-height-sp-compact;
+      gap: 0;
+      padding: 0 15px;
+    }
+
+    .l-header__logo {
+      max-height: 0;
+      padding-bottom: 0;
+      opacity: 0;
+    }
+
+    .l-header__brand-divider {
+      height: 0;
+      opacity: 0;
+    }
+
+    .l-header__brand-sub {
+      font-size: 11px;
+    }
+
+    .l-header__hamburger {
+      top: 6px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+// -- 右側コンテナ (ナビ, 透明) --
 .l-header__right {
   display: flex;
   align-items: center;
   gap: 30px;
-  padding: 11px 24px;
+  height: 71px;
+  padding: 0 30px 0 0;
   pointer-events: auto;
 
   @media (max-width: 1049px) {
@@ -131,26 +201,101 @@
   letter-spacing: 0.05em;
   line-height: 1;
   white-space: nowrap;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.3s ease;
   pointer-events: auto;
 
   &:hover { opacity: 0.7; }
 }
 
-// ヘッダー内 CTA ボタン (Figma 14px)
-.l-header__cta {
-  min-width: 180px;
-  min-height: 50px;
-  padding: 15px 5px 15px 15px;
-  font-size: 14px;
-  letter-spacing: 0.05em;
-  justify-content: flex-start;
-  text-align: left;
+// =================================================================
+// スクロール時 CV ボタン (Figma 49:1342 cv / LP修正版-スクロール時)
+// .l-header.is-scrolled (80px 超) で表示。.c-btn / .c-btn--icon を再利用
+// PC: ヘッダー下 30px・画面右端に縦並び / SP: 画面下部の固定バー
+// =================================================================
+.l-header__cv {
+  position: absolute;
+  top: calc(100% + 30px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  overflow: hidden;
+  border-radius: 6px 0 0 6px;
+  box-shadow: 0 4px 15px rgba(#000, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(8px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 
-  > p,
-  > span:first-child {
-    flex: 1 1 auto;
-    text-align: left;
+  .l-header.is-scrolled & {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  @include m.sp {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    width: auto;
+    padding-bottom: env(safe-area-inset-bottom); // iPhone のホームバー領域
+    background: v.$color-white;
+    border-radius: 0;
+    box-shadow: 0 -4px 15px rgba(#000, 0.1);
+    transform: translateY(8px);
+
+    // ドロワー表示中もドロワーより前面に表示 (ヘッダー z-index 100 > ドロワー 99)
+    .l-header:has(.l-header__hamburger.is-open) & {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+    }
+  }
+}
+
+.l-header__cv-btn {
+  gap: 5px;
+  min-width: 0;
+  min-height: 50px;
+  padding: 10px 5px 10px 10px;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0;
+
+  &.c-btn--white {
+    border-bottom: 1px solid v.$color-orange;
+  }
+
+  .c-btn__icon,
+  .c-btn__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @include m.sp {
+    flex: 1 1 0;
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: 4px;
+    min-height: 56px;
+    padding: 8px 4px;
+    font-size: 12px;
+    text-align: center;
+
+    &.c-btn--white {
+      border-bottom: 0;
+      border-top: 1px solid v.$color-orange;
+
+      + .c-btn--white {
+        border-left: 1px solid v.$color-orange;
+      }
+    }
   }
 }
 
@@ -170,6 +315,7 @@
   pointer-events: auto;
   align-items: center;
   justify-content: center;
+  transition: top 0.3s ease, width 0.3s ease, height 0.3s ease;
 
   @media (max-width: 1049px) {
     display: inline-flex;
@@ -214,9 +360,10 @@
   inset: 0;
   background: v.$color-primary;
   z-index: 99;
-  padding: 96px 24px 32px;
+  // 上: ヘッダー高 (通常 102px / コンパクト 52px) + 余白、下: 固定 CV バー (56px) + 余白
+  padding: (v.$header-height-sp + 10px) 24px calc(56px + 32px + env(safe-area-inset-bottom));
+  transition: transform 0.3s ease, padding-top 0.3s ease;
   transform: translateX(100%);
-  transition: transform 0.3s ease;
   overflow-y: auto;
   pointer-events: auto;
 
@@ -224,11 +371,15 @@
     transform: translateX(0);
   }
 
+  .l-header.is-scrolled + & {
+    padding-top: v.$header-height-sp-compact + 10px;
+  }
+
   &__list {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin: 0 0 30px;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
@@ -239,16 +390,5 @@
     padding: 18px 12px;
     font-size: 16px;
     border-bottom: 1px solid rgba(#fff, 0.18);
-  }
-
-  &__cta .c-btn {
-    width: 100%;
-    justify-content: center;
-
-    > p,
-    > span:first-child {
-      flex: 0 1 auto;
-      text-align: center;
-    }
   }
 }

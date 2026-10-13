@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.planning-support.tokyo-co2down.jp/sitemap.xml

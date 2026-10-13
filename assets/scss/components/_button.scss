@@ -80,3 +80,28 @@
 .c-btn--center {
   display: inline-flex;
 }
+
+// テキスト左寄せ + 右端アイコン (Figma btn 49:39)
+.c-btn--icon {
+  justify-content: space-between;
+  min-height: 66px;
+  padding: 10px 10px 10px 20px;
+  line-height: 1.3;
+  text-align: left;
+
+  @include m.sp {
+    min-height: 56px;
+    padding: 10px 10px 10px 18px;
+  }
+}
+
+.c-btn__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
